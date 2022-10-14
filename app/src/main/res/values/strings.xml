@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">WATools</string>
+    <string name="label_ok">Ok</string>
+    <string name="message_no_permissions">No permissions granted.</string>
+    <string name="send">Send</string>
+    <string name="send_empty">Send Empty</string>
+    <string name="blank_massage">‎</string>
+    <string name="blank_massage1"></string>
+</resources>

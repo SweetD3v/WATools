@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/layout_toolbar" />
+
+    <EditText
+        android:id="@+id/edtNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:layout_margin="16dp"
+        android:background="@drawable/bg_rounded_stroke_8"
+        android:hint="phone no. with Country code (i.e. +91)"
+        android:inputType="numberSigned|phone"
+        android:maxLines="1"
+        android:padding="16dp" />
+
+    <EditText
+        android:id="@+id/edtMessage"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_below="@id/edtNumber"
+        android:layout_margin="16dp"
+        android:background="@drawable/bg_rounded_stroke_8"
+        android:padding="16dp" />
+
+    <Button
+        android:id="@+id/btnSend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edtMessage"
+        android:layout_marginHorizontal="16dp"
+        android:text="SEND Without Saving"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/btnSendEmpy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnSend"
+        android:layout_marginHorizontal="16dp"
+        android:text="SEND Empty"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+</RelativeLayout>
