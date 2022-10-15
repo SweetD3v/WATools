@@ -14,6 +14,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         return FragmentHomeBinding.inflate(layoutInflater)
     }
 
+    companion object {
+        const val KEY_DATA_RESULT = "KEY_DATA_RESULT"
+        const val KEY_SELECTED_PHOTOS = "SELECTED_PHOTOS"
+
+        open fun newInstance(): HomeFragment {
+            return HomeFragment()
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

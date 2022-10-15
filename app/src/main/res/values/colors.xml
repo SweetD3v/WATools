@@ -1,11 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
+    <color name="color_accent">#FFBB86FC</color>
+    <color name="color_primary">#FF6200EE</color>
+    <color name="color_primary_dark">#FF3700B3</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="textColorPrimary">#000000</color>
+    <color name="grey_800">#424242</color>
+    <color name="insta_primary">#EF1A5E</color>
+    <color name="text_unselected">#1E1E1E</color>
+    <color name="statusbar">#ffffff</color>
+    <color name="statusbar_primary">#ffffff</color>
+    <color name="age_calc_divider">#F49093</color>
+    <color name="cardColorAge">#F4F7FF</color>
+    <color name="black_translucent2">#64000000</color>
+    <color name="photo_placeholder">#DDDDDD</color>
+    <color name="thumb_background_color">#000000</color>
+    <color name="unselected_color">#ff7d7d7d</color>
+    <color name="color_accent_light">#FFBFBC</color>
+    <color name="tool_bg">#F6D5D5</color>
+    <color name="red">#ff0000</color>
+    <color name="fb_primary">#2461BC</color>
+    <color name="tab_unselected">#D3F1FF</color>
+    <color name="textcolor_hint">#7F7F87</color>
 </resources>

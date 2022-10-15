@@ -1,16 +1,10 @@
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        google()
-        mavenCentral()
-    }
-}
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
 rootProject.name = "WATools"
 include ':app'
+include ':files_commons'
+include ':guide_view'
+include ':image_lib'
+include ':imagepicker'
+include ':opencv'
+include ':photofilterssdk'
+include ':shapeimageview'
+include ':ucrop'

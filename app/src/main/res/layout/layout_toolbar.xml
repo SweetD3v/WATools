@@ -6,7 +6,6 @@
     android:background="@color/white"
     android:elevation="2dp">
 
-
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imgBack"
         android:layout_width="36dp"
