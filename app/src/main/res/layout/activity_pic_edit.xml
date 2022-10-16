@@ -198,7 +198,7 @@
                         android:onClick="onClick"
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp"
-                        android:src="@drawable/close"
+                        android:src="@drawable/ic_close"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -304,7 +304,7 @@
                         android:onClick="onClick"
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp"
-                        android:src="@drawable/close"
+                        android:src="@drawable/ic_close"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -404,7 +404,7 @@
                         android:onClick="onClick"
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp"
-                        android:src="@drawable/close"
+                        android:src="@drawable/ic_close"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -571,7 +571,7 @@
                         android:foreground="@drawable/ripple"
                         android:onClick="onClick"
                         android:padding="11dp"
-                        android:src="@drawable/close"
+                        android:src="@drawable/ic_close"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />

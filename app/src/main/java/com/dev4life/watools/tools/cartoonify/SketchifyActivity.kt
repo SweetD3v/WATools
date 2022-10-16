@@ -10,7 +10,7 @@ import androidx.core.net.toUri
 import com.demo.bitmapops.JniBitmapHolder
 import com.dev4life.watools.R
 import com.dev4life.watools.databinding.ActivitySketchifyBinding
-import com.dev4life.watools.ui.activities.BaseActivity
+import com.dev4life.watools.tools.BaseActivity
 import com.dev4life.watools.utils.*
 import org.opencv.android.OpenCVLoader
 import org.opencv.core.Mat

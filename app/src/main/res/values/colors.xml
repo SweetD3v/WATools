@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="color_accent">#FFBB86FC</color>
-    <color name="color_primary">#FF6200EE</color>
-    <color name="color_primary_dark">#FF3700B3</color>
+    <color name="color_primary">#0AA543</color>
+    <color name="color_primary_dark">#107E38</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="textColorPrimary">#000000</color>
@@ -17,10 +17,13 @@
     <color name="photo_placeholder">#DDDDDD</color>
     <color name="thumb_background_color">#000000</color>
     <color name="unselected_color">#ff7d7d7d</color>
-    <color name="color_accent_light">#FFBFBC</color>
+    <color name="color_accent_light">#E4CFFF</color>
     <color name="tool_bg">#F6D5D5</color>
     <color name="red">#ff0000</color>
     <color name="fb_primary">#2461BC</color>
     <color name="tab_unselected">#D3F1FF</color>
     <color name="textcolor_hint">#7F7F87</color>
+    <color name="progress_bar_bg_light">#ff787878</color>
+    <color name="primary_bg">#ECF4FD</color>
+    <color name="black_50">#80000000</color>
 </resources>

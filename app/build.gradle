@@ -78,7 +78,7 @@ dependencies {
     def nav_version = "2.5.2"
 
     implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'androidx.appcompat:appcompat:1.4.2'
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.multidex:multidex:2.0.1'
@@ -87,6 +87,7 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
     implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
 
+    implementation 'androidx.webkit:webkit:1.4.0'
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     implementation group: 'org.jsoup', name: 'jsoup', version: '1.13.1'
     implementation group: 'com.google.code.gson', name: 'gson', version: '2.8.9'
@@ -116,7 +117,6 @@ dependencies {
     implementation 'com.karumi:dexter:6.2.1'
     implementation 'androidx.exifinterface:exifinterface:1.3.3'
     implementation 'com.loopj.android:android-async-http:1.4.9'
-    implementation 'androidx.exifinterface:exifinterface:1.3.3'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'org.wysaid:gpuimage-plus:2.6.3-min'
     implementation 'com.airbnb.android:lottie:5.1.1'

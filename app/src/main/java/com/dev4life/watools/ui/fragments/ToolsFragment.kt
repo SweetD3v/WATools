@@ -1,11 +1,8 @@
 package com.dev4life.watools.ui.fragments
 
-import android.Manifest
 import android.content.Intent
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import com.dev4life.watools.R
 import com.dev4life.watools.collage_maker.ui.activities.CollageMakerHomeActivity
@@ -35,6 +32,12 @@ import gun0912.tedimagepicker.builder.TedImagePicker
 class ToolsFragment : BaseFragment<FragmentToolsBinding>() {
     override fun getLayout(): FragmentToolsBinding {
         return FragmentToolsBinding.inflate(layoutInflater)
+    }
+
+    companion object {
+        open fun newInstance(): ToolsFragment {
+            return ToolsFragment()
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -377,7 +380,8 @@ class ToolsFragment : BaseFragment<FragmentToolsBinding>() {
                                     .showVideoDuration(true)
                                     .imageCountTextFormat("%s videos")
                                     .start { uri: Uri? ->
-                                        val videoPath: String = getRealPathFromUri(ctx, uri).toString()
+                                        val videoPath: String =
+                                            getRealPathFromUri(ctx, uri).toString()
                                         val intent =
                                             Intent(context, VideoPlayerActivity::class.java)
                                         intent.putExtra("selectedvideo", videoPath)

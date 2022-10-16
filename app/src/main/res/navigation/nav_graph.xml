@@ -17,14 +17,29 @@
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right" />
     </fragment>
+
+    <fragment
+        android:id="@+id/homeStatusFragment"
+        android:name="com.dev4life.watools.ui.fragments.HomeStatusFragment"
+        android:label="Home Status Fragment"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_home_status_to_tools"
+            app:destination="@id/toolsFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+    </fragment>
+
     <fragment
         android:id="@+id/toolsFragment"
         android:name="com.dev4life.watools.ui.fragments.ToolsFragment"
         android:label="Tools Fragment"
         tools:layout="@layout/fragment_tools">
         <action
-            android:id="@+id/action_to_tools_home"
-            app:destination="@id/homeFragment"
+            android:id="@+id/action_tools_to_home_status"
+            app:destination="@id/homeStatusFragment"
             app:enterAnim="@anim/from_left"
             app:exitAnim="@anim/to_right" />
     </fragment>

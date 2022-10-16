@@ -7,10 +7,9 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import com.dev4life.watools.R
 import com.dev4life.watools.databinding.ActivitySaveShareCartoonBinding
-import com.dev4life.watools.ui.activities.BaseActivity
+import com.dev4life.watools.tools.BaseActivity
 import com.dev4life.watools.utils.*
 import java.text.SimpleDateFormat
 import java.util.*

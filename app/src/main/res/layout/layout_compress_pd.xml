@@ -34,8 +34,8 @@
         android:layout_height="4dp"
         android:layout_below="@id/txtProgressValue"
         android:layout_marginTop="16dp"
-        app:indicatorColor="@color/colorAccentDark"
-        app:trackColor="@color/colorAccentLight1"
+        app:indicatorColor="@color/color_accent"
+        app:trackColor="@color/color_accent_light"
         app:trackCornerRadius="6dp"
         app:trackThickness="8dp" />
 
@@ -49,6 +49,6 @@
         android:layout_marginTop="16dp"
         android:text="Cancel"
         android:textAllCaps="false"
-        android:textColor="@color/md_red"
+        android:textColor="@color/red"
         android:textSize="16sp" />
 </RelativeLayout>

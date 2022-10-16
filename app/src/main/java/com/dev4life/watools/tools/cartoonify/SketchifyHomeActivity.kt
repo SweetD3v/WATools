@@ -3,11 +3,10 @@ package com.dev4life.watools.tools.cartoonify
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import com.dev4life.watools.R
 import com.dev4life.watools.databinding.ActivitySketchifyHomeBinding
-import com.dev4life.watools.ui.activities.BaseActivity
-import com.dev4life.watools.ui.mycreation.MyCreationToolsActivity
+import com.dev4life.watools.tools.BaseActivity
+import com.dev4life.watools.tools.mycreation.MyCreationToolsActivity
 import com.dev4life.watools.utils.AdsUtils
 import com.dev4life.watools.utils.NetworkState
 import gun0912.tedimagepicker.builder.TedImagePicker

@@ -10,9 +10,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.dev4life.watools.R;
 import com.dev4life.watools.collage_maker.features.college.PuzzleLayout;
-import com.dev4life.watools.collage_maker.features.college.SquarePuzzleView;
 import com.dev4life.watools.collage_maker.features.college.layout.slant.NumberSlantLayout;
 import com.dev4life.watools.collage_maker.features.college.layout.straight.NumberStraightLayout;
+import com.dev4life.watools.collage_maker.widgets.SquarePuzzleView;
 
 import java.util.ArrayList;
 import java.util.List;

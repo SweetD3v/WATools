@@ -128,7 +128,7 @@
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
                             android:layout_marginEnd="8dp"
-                            app:srcCompat="@drawable/close" />
+                            app:srcCompat="@drawable/ic_close" />
 
                     </RelativeLayout>
 
