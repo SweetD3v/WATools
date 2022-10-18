@@ -154,6 +154,7 @@ class AdsUtils {
                         adView.bodyView = adView.findViewById(R.id.secondary)
                         adView.callToActionView = adView.findViewById(R.id.call_to_action)
                         adView.advertiserView = adView.findViewById(R.id.tertiary)
+                        adView.iconView = adView.findViewById(R.id.icon)
                         populateUnifiedNativeAdView(adView, nativeAd)
                         frameLayout.visibility = View.VISIBLE
                         frameLayout.removeAllViews()
@@ -188,6 +189,7 @@ class AdsUtils {
                         adView.bodyView = adView.findViewById(R.id.secondary)
                         adView.callToActionView = adView.findViewById(R.id.call_to_action)
                         adView.advertiserView = adView.findViewById(R.id.tertiary)
+                        adView.iconView = adView.findViewById(R.id.icon)
                         populateUnifiedNativeAdView(adView, nativeAd)
                         frameLayout.visibility = View.VISIBLE
                         frameLayout.removeAllViews()
@@ -218,8 +220,10 @@ class AdsUtils {
             if (icon == null) {
                 unifiedNativeAdView.iconView?.visibility = View.INVISIBLE
             } else {
-                (unifiedNativeAdView.iconView as ImageView).setImageDrawable(icon.drawable)
-                unifiedNativeAdView.iconView?.visibility = View.VISIBLE
+                if (unifiedNativeAdView.iconView != null) {
+                    (unifiedNativeAdView.iconView as ImageView).setImageDrawable(icon.drawable)
+                    unifiedNativeAdView.iconView?.visibility = View.VISIBLE
+                }
             }
             if (unifiedNativeAd.advertiser == null) {
                 unifiedNativeAdView.advertiserView?.visibility = View.INVISIBLE

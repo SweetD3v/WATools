@@ -2,6 +2,7 @@ package com.dev4life.watools
 
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.multidex.MultiDexApplication
+import com.facebook.drawee.backends.pipeline.Fresco
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory
 import com.google.android.exoplayer2.upstream.HttpDataSource
@@ -20,6 +21,7 @@ class WAToolsApp : MultiDexApplication() {
     override fun onCreate() {
         super.onCreate()
         mInstance = this
+        Fresco.initialize(this)
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
     }

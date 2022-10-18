@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.dev4life.watools.R
 import com.dev4life.watools.databinding.ActivityWatoolsBinding
 import com.dev4life.watools.whatsapp_tools.wa_web.WebviewActivity
+import com.whats.stickers.EntryActivity
 
 class WAToolsActivity : AppCompatActivity() {
 
@@ -18,8 +19,8 @@ class WAToolsActivity : AppCompatActivity() {
         binding.run {
             imgBack.setOnClickListener { onBackPressed() }
 
-            llWAWeb.setOnClickListener {
-                startActivity(Intent(this@WAToolsActivity, WebviewActivity::class.java))
+            llWAStickers.setOnClickListener {
+                startActivity(Intent(this@WAToolsActivity, EntryActivity::class.java))
             }
         }
     }
