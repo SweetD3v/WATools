@@ -26,4 +26,5 @@
     <color name="progress_bar_bg_light">#ff787878</color>
     <color name="primary_bg">#ECF4FD</color>
     <color name="black_50">#80000000</color>
+    <color name="divider2">#b4b4b4</color>
 </resources>

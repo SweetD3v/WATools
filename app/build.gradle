@@ -17,7 +17,17 @@ android {
         renderscriptTargetApi 18
         renderscriptSupportModeEnabled true
 
+//        ndk.abiFilters 'x86', 'x86_64'
         ndk.abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
+
+//        splits {
+//            abi {
+//                enable true
+//                reset()
+//                include "x86", "armeabi-v7a", "arm64-v8a", "x86_64"
+//                universalApk false
+//            }
+//        }
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -139,6 +149,8 @@ dependencies {
 //    implementation project(path: ':files_commons')
     implementation project(path: ':guide_view')
     implementation project(path: ':ucrop')
+
+    implementation 'com.github.Ajinkrishnak:CountryCodePicker:1.0.2'
 
     //WA Stickers
     def fresco_version = '2.5.0'

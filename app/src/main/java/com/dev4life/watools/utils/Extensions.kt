@@ -553,11 +553,88 @@ fun getMediaWA(ctx: Context, block: (MutableList<Media>) -> Unit) {
     object : AsyncTaskRunner<Void?, MutableList<Media>>(ctx) {
         override fun doInBackground(params: Void?): MutableList<Media> {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                val persistedUri = ctx.contentResolver.persistedUriPermissions[0]
-                persistedUri?.let {
+                var persistedUri: Uri = "".toUri()
+                ctx.contentResolver.persistedUriPermissions.forEach { uriPermission ->
+                    if (!uriPermission.uri.toString().contains(".w4b")) {
+                        persistedUri = uriPermission.uri
+                    }
+                }
+                if (persistedUri.toString() == "")
+                    return mutableListOf()
+                persistedUri.let {
                     val fromTreeUri = DocumentFile.fromTreeUri(
                         ctx,
-                        it.uri
+                        it
+                    )
+
+                    val listFiles = fromTreeUri?.listFiles()
+                    if (listFiles != null) {
+                        for (documentFile in listFiles) {
+                            val uri = documentFile.uri
+                            Log.e(
+                                "TAG",
+                                "loadImagesA30: ${
+                                    ctx.contentResolver.getType(documentFile.uri)!!
+                                        .contains("video")
+                                }"
+                            )
+                            val status = Media(
+                                uri,
+                                uri.toString(),
+                                ctx.contentResolver.getType(documentFile.uri)!!.contains("video"),
+                                documentFile.lastModified()
+                            )
+                            if (!status.uri.toString().contains(".nomedia", true)) {
+                                mediaListFinal.add(status)
+                                Log.e("TAG", "doInBackground: ${mediaListFinal.size}")
+                            }
+                        }
+                    }
+                }
+            } else {
+                if (AppUtils.STATUS_DIRECTORY.exists()) {
+                    val imagesListNew = getMediaQMinus(ctx, AppUtils.STATUS_DIRECTORY)
+                    for (media in imagesListNew) {
+                        if (!media.isVideo) {
+                            mediaListFinal.add(media)
+                        }
+                    }
+                }
+            }
+
+            Log.e("TAG", "mediaListFinal: ${mediaListFinal.size}")
+            return mediaListFinal
+        }
+
+        override fun onPostExecute(result: MutableList<Media>?) {
+            super.onPostExecute(result)
+
+            result?.let { list ->
+                block(list)
+            }
+        }
+
+    }.execute(null, false)
+}
+
+fun getMediaWAWB(ctx: Context, block: (MutableList<Media>) -> Unit) {
+    val mediaListFinal: MutableList<Media> = mutableListOf()
+
+    object : AsyncTaskRunner<Void?, MutableList<Media>>(ctx) {
+        override fun doInBackground(params: Void?): MutableList<Media> {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                var persistedUri: Uri = "".toUri()
+                ctx.contentResolver.persistedUriPermissions.forEach { uriPermission ->
+                    if (uriPermission.uri.toString().contains(".w4b")) {
+                        persistedUri = uriPermission.uri
+                    }
+                }
+                if (persistedUri.toString() == "")
+                    return mutableListOf()
+                persistedUri.let {
+                    val fromTreeUri = DocumentFile.fromTreeUri(
+                        ctx,
+                        it
                     )
 
                     val listFiles = fromTreeUri?.listFiles()

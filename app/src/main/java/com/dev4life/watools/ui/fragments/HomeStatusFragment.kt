@@ -23,9 +23,10 @@ import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.dev4life.watools.databinding.FragmentHomeStatusBinding
+import com.dev4life.watools.interfaces.WATypeChangeListener
 import com.google.android.material.tabs.TabLayoutMediator
 
-class HomeStatusFragment : BaseFragment<FragmentHomeStatusBinding>() {
+class HomeStatusFragment : BaseFragment<FragmentHomeStatusBinding>(), WATypeChangeListener {
     override fun getLayout(): FragmentHomeStatusBinding {
         return FragmentHomeStatusBinding.inflate(layoutInflater)
     }
@@ -152,6 +153,21 @@ class HomeStatusFragment : BaseFragment<FragmentHomeStatusBinding>() {
         statusFileResultLauncher.launch(createOpenDocumentTreeIntent)
     }
 
+    @RequiresApi(Build.VERSION_CODES.R)
+    private fun openDocTreeStatusBusiness() {
+        Log.e("TAG", "requestPermissionQB: ")
+        val createOpenDocumentTreeIntent =
+            (ctx.getSystemService(STORAGE_SERVICE) as StorageManager).primaryStorageVolume.createOpenDocumentTreeIntent()
+        val replace: String =
+            (createOpenDocumentTreeIntent.getParcelableExtra<Parcelable>(DocumentsContract.EXTRA_INITIAL_URI) as Uri?).toString()
+                .replace("/root/", "/document/")
+        val parse: Uri =
+            Uri.parse("$replace%3AAndroid%2Fmedia%2Fcom.whatsapp.w4b%2FWhatsApp%20Business%2FMedia%2F.Statuses")
+        Log.d("URI", parse.toString())
+        createOpenDocumentTreeIntent.putExtra(DocumentsContract.EXTRA_INITIAL_URI, parse)
+        statusFileResultLauncher.launch(createOpenDocumentTreeIntent)
+    }
+
     inner class FragmentsAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
         override fun getItemCount(): Int {
             return 2
@@ -172,5 +188,29 @@ class HomeStatusFragment : BaseFragment<FragmentHomeStatusBinding>() {
 
     override fun onBackPressed() {
 
+    }
+
+    override fun onTypeChanged(type: Int) {
+        if (type == 0)
+            imgFragment.onTypeChanged(type)
+        else {
+            var openPicker = true
+            for (uriPermission in ctx.contentResolver.persistedUriPermissions) {
+                Log.e("TAG", "onTypeChanged: ${uriPermission.uri.toString()}")
+                if (uriPermission.uri.toString().contains(".w4b")) {
+                    openPicker = false
+                    break
+                }
+            }
+
+            Log.e("TAG", "onTypeChangedGG: $openPicker")
+            if (!openPicker) {
+                imgFragment.onTypeChanged(type)
+            } else {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                    openDocTreeStatusBusiness()
+                }
+            }
+        }
     }
 }

@@ -9,23 +9,38 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dev4life.watools.R
 import com.dev4life.watools.adapters.WAMediaSavedAdapter
 import com.dev4life.watools.databinding.FragmentWaimagesBinding
+import com.dev4life.watools.interfaces.WATypeChangeListener
 import com.dev4life.watools.models.Media
 import com.dev4life.watools.utils.RootDirectoryWhatsappShow
 import com.dev4life.watools.utils.addOuterGridSpacing
 import com.dev4life.watools.utils.getMedia
 
-class WADownloadsFragment : BaseFragment<FragmentWaimagesBinding>() {
+class WADownloadsFragment : BaseFragment<FragmentWaimagesBinding>(), WATypeChangeListener {
     override fun getLayout(): FragmentWaimagesBinding {
         return FragmentWaimagesBinding.inflate(layoutInflater)
     }
 
     var imagesList: MutableList<Media> = mutableListOf()
     var decorationAdded: Boolean? = false
+    var waTypeChangeListener: WATypeChangeListener? = null
 
     companion object {
-        open fun newInstance(): WADownloadsFragment {
-            return WADownloadsFragment()
+        fun newInstance(): WADownloadsFragment {
+            val fragment = WADownloadsFragment()
+            fragment.waTypeChangeListener = fragment
+            return fragment
         }
+
+        fun newInstance(waTypeChangeListener: WATypeChangeListener): WADownloadsFragment {
+            val fragment = WADownloadsFragment()
+            fragment.waTypeChangeListener = waTypeChangeListener
+            return fragment
+        }
+
+    }
+
+    override fun onTypeChanged(type: Int) {
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
