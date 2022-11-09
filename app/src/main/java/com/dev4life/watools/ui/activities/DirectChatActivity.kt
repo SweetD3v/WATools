@@ -1,9 +1,12 @@
 package com.dev4life.watools.ui.activities
 
+import android.content.ComponentName
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import com.dev4life.watools.databinding.ActivityDirectChatBinding
+
 
 class DirectChatActivity : BaseActivity() {
 
@@ -22,15 +25,37 @@ class DirectChatActivity : BaseActivity() {
 
                     toCode = toCode.replace("+", "").replace(" ", "")
 
-                    val phoneNo = toCode + edtNumber.text.toString()
+                    val phoneNo = toCode + edtNumber.text.toString().replace(" ", "")
+                    Log.e("TAG", "phoneNo: $phoneNo")
 
                     val sendIntent = Intent(Intent.ACTION_MAIN)
+                    sendIntent.component = ComponentName(
+                        "com.whatsapp",
+                        "com.whatsapp.Conversation"
+                    )
                     sendIntent.putExtra("jid", "$phoneNo@s.whatsapp.net")
                     sendIntent.putExtra(Intent.EXTRA_TEXT, edtMessage.text.toString())
                     sendIntent.action = Intent.ACTION_SEND
                     sendIntent.setPackage("com.whatsapp")
                     sendIntent.type = "text/plain"
-                    startActivity(sendIntent)
+                    if (sendIntent.resolveActivity(packageManager) != null) {
+                        startActivity(sendIntent)
+                    } else {
+                        sendIntent.component = ComponentName(
+                            "com.whatsapp.w4b",
+                            "com.whatsapp.Conversation"
+                        )
+                        sendIntent.setPackage("com.whatsapp.w4b")
+                        if (sendIntent.resolveActivity(packageManager) != null) {
+                            startActivity(sendIntent)
+                        } else {
+                            Toast.makeText(
+                                this@DirectChatActivity,
+                                "Whatsapp not installed!",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
                 } else {
                     Toast.makeText(
                         this@DirectChatActivity,

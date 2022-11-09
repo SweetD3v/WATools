@@ -161,11 +161,7 @@
                             <androidx.appcompat.widget.AppCompatImageView
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
-                                android:background="@drawable/rounded_bg_white_8"
-                                android:backgroundTint="@color/grey_800"
-                                android:padding="8dp"
-                                app:srcCompat="@drawable/ic_status_maker"
-                                app:tint="@color/white" />
+                                app:srcCompat="@drawable/ic_status_maker" />
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -191,11 +187,7 @@
                             <androidx.appcompat.widget.AppCompatImageView
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
-                                android:background="@drawable/rounded_bg_white_8"
-                                android:backgroundTint="#F6742E"
-                                android:padding="8dp"
-                                app:srcCompat="@drawable/ic_photo_compress"
-                                app:tint="@color/white" />
+                                app:srcCompat="@drawable/ic_photo_compress_new" />
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -221,11 +213,7 @@
                             <androidx.appcompat.widget.AppCompatImageView
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
-                                android:background="@drawable/rounded_bg_white_8"
-                                android:backgroundTint="@color/insta_primary"
-                                android:padding="8dp"
-                                app:srcCompat="@drawable/ic_age_calc"
-                                app:tint="@color/white" />
+                                app:srcCompat="@drawable/ic_age_calc" />
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -251,11 +239,7 @@
                             <androidx.appcompat.widget.AppCompatImageView
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
-                                android:background="@drawable/rounded_bg_white_8"
-                                android:backgroundTint="#0483D8"
-                                android:padding="8dp"
-                                app:srcCompat="@drawable/ic_download"
-                                app:tint="@color/white" />
+                                app:srcCompat="@drawable/ic_download_new" />
 
                             <TextView
                                 android:layout_width="match_parent"

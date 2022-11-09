@@ -96,7 +96,7 @@
             android:elevation="8dp"
             android:gravity="top"
             android:padding="16dp"
-            android:text="saaf" />
+            android:hint="@string/enter_your_text_here"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/btnSend"
