@@ -105,7 +105,6 @@
                     android:background="@drawable/rounded_bg_white_8"
                     android:enabled="false"
                     android:fontFamily="@font/poppins_bold"
-                    android:paddingVertical="8dp"
                     android:text="Clean"
                     android:textAllCaps="false"
                     android:textSize="18sp" />

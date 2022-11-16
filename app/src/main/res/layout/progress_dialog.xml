@@ -34,7 +34,7 @@
         android:layout_height="4dp"
         android:layout_below="@id/txtPerc"
         android:layout_marginTop="16dp"
-        app:indicatorColor="@color/colorAccent"
+        app:indicatorColor="@color/color_accent"
         app:trackColor="@color/color_accent_light"
         app:trackCornerRadius="6dp"
         app:trackThickness="8dp" />

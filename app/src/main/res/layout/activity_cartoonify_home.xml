@@ -124,7 +124,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/karla_semibold"
-                        android:text="Make an amazing cartoon photo"
+                        android:text="Apply cartoon effect to your photos"
                         android:textColor="@color/text_unselected"
                         android:textSize="14sp" />
                 </LinearLayout>

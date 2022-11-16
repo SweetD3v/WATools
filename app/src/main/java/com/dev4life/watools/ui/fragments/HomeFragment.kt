@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.navigation.Navigation
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.dev4life.watools.R
 import com.dev4life.watools.databinding.BottomSheetWaTypeBinding
 import com.dev4life.watools.databinding.FragmentHomeBinding
@@ -56,6 +57,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
             viewPagerHomeStatus.isUserInputEnabled = false
             viewPagerHomeStatus.adapter = FragmentsAdapter(requireActivity())
+            viewPagerHomeStatus.registerOnPageChangeCallback(object : OnPageChangeCallback() {
+                override fun onPageSelected(position: Int) {
+                    super.onPageSelected(position)
+                    when (position) {
+                        0 -> imgMore.visibility = View.VISIBLE
+                        1 -> imgMore.visibility = View.GONE
+                    }
+                }
+            })
 
             bottomNavBar.setOnItemSelectedListener { item ->
                 when (item.itemId) {

@@ -87,11 +87,23 @@
                     android:id="@+id/textSizeOrg"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
+                    android:layout_above="@id/txtBefore"
                     android:fontFamily="@font/karla_semibold"
                     android:gravity="center"
                     android:text="Size: 0 KB"
                     android:textColor="@color/textColorPrimary"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/txtBefore"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/karla_medium"
+                    android:gravity="center"
+                    android:text="Original"
+                    android:textColor="@color/color_accent"
                     android:textSize="16sp" />
             </com.dev4life.watools.widgets.SquareRelativeLayout>
 
@@ -127,11 +139,23 @@
                     android:id="@+id/textSizeCmp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
+                    android:layout_above="@id/txtAfter"
                     android:fontFamily="@font/karla_semibold"
                     android:gravity="center"
                     android:text="Size: 0 KB"
                     android:textColor="@color/textColorPrimary"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/txtAfter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/karla_medium"
+                    android:gravity="center"
+                    android:text="Compressed"
+                    android:textColor="@color/color_accent"
                     android:textSize="16sp" />
             </com.dev4life.watools.widgets.SquareRelativeLayout>
         </LinearLayout>

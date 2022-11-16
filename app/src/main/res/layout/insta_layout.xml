@@ -106,9 +106,10 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="8dp"
                 android:progressBackgroundTint="@color/unselected_color"
-                android:progressTint="@color/colorPrimary"
+                android:progressTint="@color/color_accent"
                 android:splitTrack="false"
-                android:thumb="@drawable/custom_thumb" />
+                android:thumb="@drawable/custom_thumb"
+                android:thumbTint="@color/color_accent" />
 
         </RelativeLayout>
     </RelativeLayout>
@@ -118,6 +119,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/tool_bg_top"
+        android:backgroundTint="@color/green_light"
         app:layout_constraintBottom_toTopOf="@id/handler">
 
         <androidx.appcompat.widget.AppCompatImageView

@@ -33,7 +33,7 @@ import java.io.File
 
 class FullViewWhatsappActivity : AppCompatActivity() {
     val binding by lazy { ActivityFullviewWaBinding.inflate(layoutInflater) }
-    val imagesList = mutableListOf<Media>()
+    var imagesList = mutableListOf<Media>()
     var position = 0
     val extFile by lazy { File(getExternalFilesDir("Videos"), "video.mp4") }
     var isVideo = false
@@ -42,6 +42,7 @@ class FullViewWhatsappActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        setDarkStatusBarColor(this, R.color.black)
 
         binding.run {
 
@@ -167,10 +168,18 @@ class FullViewWhatsappActivity : AppCompatActivity() {
 
         if (!isVideo) {
             binding.fabSetWP.visibility = View.GONE
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                loadImages()
-            } else {
-                executeImageOld()
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+//                loadImages()
+//            } else {
+//                executeImageOld()
+//            }
+            getMediaWA(this) { list ->
+                val imagesListNew = list
+                if (this.imagesList.size != imagesListNew.size)
+                    imagesList = imagesListNew
+                Handler(Looper.getMainLooper()).post {
+                    refreshAdapter()
+                }
             }
         } else {
             binding.fabSetWP.visibility = View.VISIBLE

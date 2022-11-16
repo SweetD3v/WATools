@@ -124,7 +124,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/karla_semibold"
-                        android:text="Make amazing photos"
+                        android:text="Edit your photo with filters &amp; effects"
                         android:textColor="@color/text_unselected"
                         android:textSize="14sp" />
                 </LinearLayout>

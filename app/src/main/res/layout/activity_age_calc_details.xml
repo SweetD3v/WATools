@@ -72,7 +72,7 @@
             android:fontFamily="@font/karla_semibold"
             android:paddingHorizontal="16dp"
             android:text="@string/your_age"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/color_primary"
             android:textSize="20sp" />
 
         <TextView
@@ -118,7 +118,7 @@
                         android:gravity="center"
                         android:padding="8dp"
                         android:text="Years"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/color_primary"
                         android:textSize="18sp" />
 
                     <TextView
@@ -131,7 +131,7 @@
                         android:gravity="center"
                         android:padding="8dp"
                         android:text="Months"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/color_primary"
                         android:textSize="18sp" />
 
                     <TextView
@@ -144,7 +144,7 @@
                         android:gravity="center"
                         android:padding="8dp"
                         android:text="Days"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/color_primary"
                         android:textSize="18sp" />
                 </LinearLayout>
 
@@ -254,7 +254,7 @@
                                 android:gravity="center"
                                 android:padding="8dp"
                                 android:text="Months"
-                                android:textColor="@color/colorPrimary"
+                                android:textColor="@color/color_primary"
                                 android:textSize="18sp" />
 
                             <TextView
@@ -267,7 +267,7 @@
                                 android:gravity="center"
                                 android:padding="8dp"
                                 android:text="Days"
-                                android:textColor="@color/colorPrimary"
+                                android:textColor="@color/color_primary"
                                 android:textSize="18sp" />
                         </LinearLayout>
 
@@ -354,7 +354,7 @@
                                 android:gravity="center_vertical"
                                 android:padding="8dp"
                                 android:text="Years"
-                                android:textColor="@color/colorPrimary"
+                                android:textColor="@color/color_primary"
                                 android:textSize="16sp" />
 
                             <TextView
@@ -392,7 +392,7 @@
                                 android:gravity="center_vertical"
                                 android:padding="8dp"
                                 android:text="Months"
-                                android:textColor="@color/colorPrimary"
+                                android:textColor="@color/color_primary"
                                 android:textSize="18sp" />
 
                             <TextView
@@ -430,7 +430,7 @@
                                 android:gravity="center_vertical"
                                 android:padding="8dp"
                                 android:text="Weeks"
-                                android:textColor="@color/colorPrimary"
+                                android:textColor="@color/color_primary"
                                 android:textSize="16sp" />
 
                             <TextView
@@ -468,7 +468,7 @@
                                 android:gravity="center_vertical"
                                 android:padding="8dp"
                                 android:text="Days"
-                                android:textColor="@color/colorPrimary"
+                                android:textColor="@color/color_primary"
                                 android:textSize="16sp" />
 
                             <TextView
@@ -506,7 +506,7 @@
                                 android:gravity="center_vertical"
                                 android:padding="8dp"
                                 android:text="Hours"
-                                android:textColor="@color/colorPrimary"
+                                android:textColor="@color/color_primary"
                                 android:textSize="16sp" />
 
                             <TextView
@@ -544,7 +544,7 @@
                                 android:gravity="center_vertical"
                                 android:padding="8dp"
                                 android:text="Minutes"
-                                android:textColor="@color/colorPrimary"
+                                android:textColor="@color/color_primary"
                                 android:textSize="16sp" />
 
                             <TextView
@@ -582,7 +582,7 @@
                                 android:gravity="center_vertical"
                                 android:padding="8dp"
                                 android:text="Seconds"
-                                android:textColor="@color/colorPrimary"
+                                android:textColor="@color/color_primary"
                                 android:textSize="16sp" />
 
                             <TextView

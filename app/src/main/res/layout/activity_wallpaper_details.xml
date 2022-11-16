@@ -18,7 +18,7 @@
             android:elevation="4dp"
             android:theme="@style/ThemeOverlay.AppCompat.DayNight.ActionBar"
             app:layout_constraintTop_toTopOf="parent"
-            app:navigationIcon="@drawable/ic_back"
+            app:navigationIcon="@drawable/ic_back_white"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
             <RelativeLayout
@@ -29,7 +29,7 @@
                     android:id="@+id/app_title"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
                     android:gravity="center_vertical"
                     android:textColor="@color/white"
                     android:textSize="20sp"
@@ -59,7 +59,7 @@
                 android:layout_marginBottom="16dp"
                 android:src="@drawable/ic_more_vert"
                 android:text="More"
-                app:backgroundTint="@color/colorAccent"
+                app:backgroundTint="@color/color_accent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:tint="@color/white" />
@@ -69,7 +69,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
-                app:backgroundTint="@color/colorAccent"
+                app:backgroundTint="@color/color_accent"
                 app:fabSize="normal"
                 app:layout_constraintBottom_toTopOf="@+id/fabDownload"
                 app:layout_constraintEnd_toEndOf="@+id/fabDownload"
@@ -84,7 +84,7 @@
                 android:layout_marginEnd="8dp"
                 android:fontFamily="@font/poppins_medium"
                 android:text="Share"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="@+id/fabShare"
                 app:layout_constraintEnd_toStartOf="@+id/fabShare"
                 app:layout_constraintTop_toTopOf="@+id/fabShare" />
@@ -94,7 +94,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
-                app:backgroundTint="@color/colorAccent"
+                app:backgroundTint="@color/color_accent"
                 app:fabSize="normal"
                 app:layout_constraintBottom_toTopOf="@+id/fabSetWP"
                 app:layout_constraintEnd_toEndOf="@+id/fabSetWP"
@@ -108,7 +108,7 @@
                 android:layout_marginEnd="8dp"
                 android:fontFamily="@font/poppins_medium"
                 android:text="Download"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="@+id/fabDownload"
                 app:layout_constraintEnd_toStartOf="@+id/fabDownload"
                 app:layout_constraintTop_toTopOf="@+id/fabDownload" />
@@ -118,7 +118,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
-                app:backgroundTint="@color/colorAccent"
+                app:backgroundTint="@color/color_accent"
                 app:fabSize="normal"
                 app:layout_constraintBottom_toTopOf="@+id/fabMore"
                 app:layout_constraintEnd_toEndOf="@+id/fabMore"
@@ -132,7 +132,7 @@
                 android:layout_marginEnd="8dp"
                 android:fontFamily="@font/poppins_medium"
                 android:text="Set wallpaper"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="@+id/fabSetWP"
                 app:layout_constraintEnd_toStartOf="@+id/fabSetWP"
                 app:layout_constraintTop_toTopOf="@+id/fabSetWP" />

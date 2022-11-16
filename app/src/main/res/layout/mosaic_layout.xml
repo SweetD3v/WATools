@@ -115,8 +115,9 @@
                 android:max="75"
                 android:progress="40"
                 android:progressBackgroundTint="@color/unselected_color"
-                android:progressTint="@color/colorPrimary"
+                android:progressTint="@color/color_accent"
                 android:splitTrack="false"
+                android:thumbTint="@color/color_accent"
                 android:thumb="@drawable/custom_thumb" />
 
             <SeekBar
@@ -127,8 +128,9 @@
                 android:max="100"
                 android:progress="20"
                 android:progressBackgroundTint="@color/unselected_color"
-                android:progressTint="@color/colorPrimary"
+                android:progressTint="@color/color_accent"
                 android:splitTrack="false"
+                android:thumbTint="@color/color_accent"
                 android:thumb="@drawable/custom_thumb" />
 
             <androidx.recyclerview.widget.RecyclerView

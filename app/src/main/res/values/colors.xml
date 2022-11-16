@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="color_accent">#FFBB86FC</color>
+    <color name="color_accent">#144A9C</color>
     <color name="color_primary">#0AA543</color>
     <color name="color_primary_dark">#107E38</color>
     <color name="black">#FF000000</color>
@@ -11,13 +11,13 @@
     <color name="text_unselected">#1E1E1E</color>
     <color name="statusbar">#ffffff</color>
     <color name="statusbar_primary">#ffffff</color>
-    <color name="age_calc_divider">#F49093</color>
+    <color name="age_calc_divider">#82B4FF</color>
     <color name="cardColorAge">#F4F7FF</color>
     <color name="black_translucent2">#64000000</color>
     <color name="photo_placeholder">#DDDDDD</color>
     <color name="thumb_background_color">#000000</color>
     <color name="unselected_color">#ff7d7d7d</color>
-    <color name="color_accent_light">#E4CFFF</color>
+    <color name="color_accent_light">#CFD0FF</color>
     <color name="tool_bg">#F6D5D5</color>
     <color name="red">#ff0000</color>
     <color name="fb_primary">#2461BC</color>
@@ -27,4 +27,5 @@
     <color name="primary_bg">#ECF4FD</color>
     <color name="black_50">#80000000</color>
     <color name="divider2">#b4b4b4</color>
+    <color name="green_light">#A0E8BB</color>
 </resources>

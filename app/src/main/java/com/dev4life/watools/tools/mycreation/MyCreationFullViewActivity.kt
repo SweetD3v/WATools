@@ -47,11 +47,11 @@ class MyCreationFullViewActivity : AppCompatActivity() {
 
         binding.run {
 
-            if (NetworkState.isOnline())
-                AdsUtils.loadBanner(
-                    this@MyCreationFullViewActivity, getString(R.string.banner_id_details),
-                    bannerContainer
-                )
+            if (NetworkState.isOnline()) AdsUtils.loadBanner(
+                this@MyCreationFullViewActivity,
+                getString(R.string.banner_id_details),
+                bannerContainer
+            )
 
             fabDelete.hide()
             fabShare.hide()
@@ -89,13 +89,9 @@ class MyCreationFullViewActivity : AppCompatActivity() {
 
             fabDelete.setOnClickListener {
                 val builder = AlertDialog.Builder(
-                    this@MyCreationFullViewActivity,
-                    R.style.RoundedCornersDialog
-                )
-                    .setTitle("Delete")
-                    .setMessage("Are you sure want to delete this file?")
-                    .setCancelable(true)
-                    .setPositiveButton("Delete") { dialog, _ ->
+                    this@MyCreationFullViewActivity, R.style.RoundedCornersDialog
+                ).setTitle("Delete").setMessage("Are you sure want to delete this file?")
+                    .setCancelable(true).setPositiveButton("Delete") { dialog, _ ->
                         dialog.dismiss()
                         val image = imagesList!![binding.viewPagerMedia.currentItem]
                         val file = File(image.path)
@@ -104,8 +100,7 @@ class MyCreationFullViewActivity : AppCompatActivity() {
                         toastShort(this@MyCreationFullViewActivity, "File deleted.")
                         imagesList!!.remove(image)
                         refreshAdapter()
-                        if (imagesList!!.size == 0)
-                            finish()
+                        if (imagesList!!.size == 0) finish()
                     }.setNegativeButton("Cancel") { dialog, _ ->
                         dialog.dismiss()
                     }
@@ -116,14 +111,13 @@ class MyCreationFullViewActivity : AppCompatActivity() {
 
             fabShare.setOnClickListener {
                 val image = imagesList!![binding.viewPagerMedia.currentItem]
-                if (image.uri.toString().endsWith(".jpg")
-                    or image.uri.toString().endsWith(".png")
+                if (image.uri.toString().endsWith(".jpg") or image.uri.toString()
+                        .endsWith(".png")
                 ) {
-                    val bitmap =
-                        if (image.uri.toString().endsWith(".jpg")
-                            or image.uri.toString().endsWith(".png")
-                        ) getBitmapFromUri(this@MyCreationFullViewActivity, image.uri)
-                        else getVideoThumbnail(this@MyCreationFullViewActivity, image.uri)
+                    val bitmap = if (image.uri.toString().endsWith(".jpg") or image.uri.toString()
+                            .endsWith(".png")
+                    ) getBitmapFromUri(this@MyCreationFullViewActivity, image.uri)
+                    else getVideoThumbnail(this@MyCreationFullViewActivity, image.uri)
 
                     saveImageTemp(bitmap)
                 } else {
@@ -143,8 +137,7 @@ class MyCreationFullViewActivity : AppCompatActivity() {
                 intent.putExtra("mimeType", contentResolver.getType(uri))
 
                 val resInfoList: List<ResolveInfo> = packageManager.queryIntentActivities(
-                    intent,
-                    PackageManager.MATCH_DEFAULT_ONLY
+                    intent, PackageManager.MATCH_DEFAULT_ONLY
                 )
                 for (resolveInfo in resInfoList) {
                     val packageName: String = resolveInfo.activityInfo.packageName
@@ -166,8 +159,7 @@ class MyCreationFullViewActivity : AppCompatActivity() {
         binding.fabSetWP.visibility = View.GONE
         loadMedia()
 
-        if (extFile.exists())
-            extFile.delete()
+        if (extFile.exists()) extFile.delete()
     }
 
     fun loadMedia() {
@@ -240,18 +232,14 @@ class MyCreationFullViewActivity : AppCompatActivity() {
     private fun saveImageTemp(bitmap: Bitmap?) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             FileUtilsss.saveBitmapAsFileCache(
-                this@MyCreationFullViewActivity,
-                bitmap,
-                "IMG_${System.currentTimeMillis()}.jpg"
+                this@MyCreationFullViewActivity, bitmap, "IMG_${System.currentTimeMillis()}.jpg"
             ) { path ->
                 val uri = FileProvider.getUriForFile(this, "${packageName}.provider", File(path))
                 shareMediaUri(this, arrayListOf(uri))
             }
         } else {
             FileUtilsss.saveBitmapAsFileCache(
-                this@MyCreationFullViewActivity,
-                bitmap,
-                "IMG_${System.currentTimeMillis()}.jpg"
+                this@MyCreationFullViewActivity, bitmap, "IMG_${System.currentTimeMillis()}.jpg"
             ) { path ->
                 val uri = FileProvider.getUriForFile(this, "${packageName}.provider", File(path))
                 shareMediaUri(this, arrayListOf(uri))
@@ -272,8 +260,7 @@ class MyCreationFullViewActivity : AppCompatActivity() {
     }
 
     inner class ImageViewAdapter(
-        var ctx: Context,
-        var itemList: MutableList<Media>
+        var ctx: Context, var itemList: MutableList<Media>
     ) : RecyclerView.Adapter<ImageViewAdapter.VH>() {
         inner class VH(var binding: ItemFullViewBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -286,23 +273,20 @@ class MyCreationFullViewActivity : AppCompatActivity() {
 
             Log.e("TAG", "onBindViewHolder: ${item.path}")
 
-            Glide.with(ctx).load(item.uri)
-                .placeholder(R.drawable.error_placeholder).into(holder.binding.imgView)
+            Glide.with(ctx).load(item.uri).placeholder(R.drawable.error_placeholder)
+                .into(holder.binding.imgView)
 
             holder.binding.imgPlay.visibility = if (item.isVideo) View.VISIBLE else View.GONE
             holder.binding.rlRoot.setBackgroundColor(
                 ContextCompat.getColor(
-                    ctx,
-                    R.color.black
+                    ctx, R.color.black
                 )
             )
 
             holder.binding.imgPlay.setOnClickListener {
-                if (item.isVideo)
-                    ctx.startActivity(
-                        Intent(ctx, VideoViewActivity::class.java)
-                            .putExtra("path", item.uri.toString())
-                    )
+                if (item.isVideo) ctx.startActivity(
+                    Intent(ctx, VideoViewActivity::class.java).putExtra("path", item.uri.toString())
+                )
             }
         }
 

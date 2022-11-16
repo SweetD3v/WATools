@@ -119,9 +119,10 @@
                     android:max="150"
                     android:progress="55"
                     android:progressBackgroundTint="@color/unselected_color"
-                    android:progressTint="@color/colorPrimary"
+                    android:progressTint="@color/color_accent"
                     android:splitTrack="false"
-                    android:thumb="@drawable/custom_thumb" />
+                    android:thumb="@drawable/custom_thumb"
+                    android:thumbTint="@color/color_accent" />
             </RelativeLayout>
         </LinearLayout>
     </RelativeLayout>
@@ -131,6 +132,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/tool_bg_top"
+        android:backgroundTint="@color/green_light"
         app:layout_constraintBottom_toTopOf="@+id/layoutSplash">
 
         <ImageView
@@ -168,13 +170,13 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:gravity="center"
-            app:backGroundColor="@color/color_accent_light"
+            app:backGroundColor="@color/color_primary_dark"
             app:initialNumber="3"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:textColor="@color/black" />
+            app:textColor="@color/white" />
 
         <TextView
             android:id="@+id/shape"

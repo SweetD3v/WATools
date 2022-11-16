@@ -8,8 +8,8 @@ import android.view.View
 import android.webkit.*
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.dev4life.watools.databinding.ActivityFunnyVideosBinding
 import com.dev4life.watools.R
+import com.dev4life.watools.databinding.ActivityFunnyVideosBinding
 import com.dev4life.watools.tools.downloader.BasicImageDownloader
 import com.dev4life.watools.utils.AdsUtils
 import com.dev4life.watools.utils.NetworkState
@@ -33,6 +33,8 @@ class FunnyVideosActivity : AppCompatActivity() {
                     this@FunnyVideosActivity, getString(R.string.banner_id_details),
                     bannerContainer
                 )
+
+            imgBack.setOnClickListener { onBackPressed() }
         }
     }
 
@@ -125,5 +127,9 @@ class FunnyVideosActivity : AppCompatActivity() {
                 Log.e("TAG", "onReceivedError: ${error?.description}")
             }
         }
+    }
+
+    override fun onBackPressed() {
+        finish()
     }
 }

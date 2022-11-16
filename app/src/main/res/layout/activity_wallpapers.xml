@@ -81,7 +81,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/bannerContainer"
         android:indeterminate="true"
-        android:progressTint="@color/colorPrimary"
+        android:progressTint="@color/color_primary"
         android:visibility="gone" />
 
     <FrameLayout

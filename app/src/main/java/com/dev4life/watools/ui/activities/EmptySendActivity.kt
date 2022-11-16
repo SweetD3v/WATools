@@ -1,10 +1,10 @@
 package com.dev4life.watools.ui.activities
 
+import android.content.ComponentName
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import com.dev4life.watools.R
 import com.dev4life.watools.databinding.ActivitySendEmptyBinding
 
@@ -18,22 +18,14 @@ class EmptySendActivity : BaseActivity() {
 
         binding.run {
             btnSend.setOnClickListener {
-                if (edtLines.text.toString().trim().isNotEmpty()
+                if (edtNumber.text.toString().trim().isNotEmpty()
+                    && edtLines.text.toString().trim().isNotEmpty()
                 ) {
                     var toCode = ccpPhone.selectedCountryCode() // contains spaces.
 
                     toCode = toCode.replace("+", "").replace(" ", "")
 
-                    val phoneNo = toCode + edtNumber.text.toString()
-
-//                    val sendIntent = Intent(Intent.ACTION_MAIN)
-//                    sendIntent.putExtra("jid", "$phoneNo@s.whatsapp.net")
-//                    sendIntent.putExtra(Intent.EXTRA_TEXT, edtLines.text.toString())
-//                    sendIntent.action = Intent.ACTION_SEND
-//                    sendIntent.setPackage("com.whatsapp")
-//                    sendIntent.type = "text/plain"
-//                    startActivity(sendIntent)
-
+                    val phoneNo = toCode + edtNumber.text.toString().replace(" ", "")
                     val lines = edtLines.text.toString().toInt()
 
                     val sb = StringBuilder("")
@@ -44,7 +36,7 @@ class EmptySendActivity : BaseActivity() {
                         }
                     }
 
-                    shareBlankWhatsApp(sb.toString())
+                    shareBlankWhatsApp(phoneNo, sb.toString())
                 } else {
                     Toast.makeText(
                         this@EmptySendActivity,
@@ -56,14 +48,36 @@ class EmptySendActivity : BaseActivity() {
         }
     }
 
-    fun shareBlankWhatsApp(message: String) {
+    fun shareBlankWhatsApp(phoneNo: String, message: String) {
         try {
-            val waIntent = Intent(Intent.ACTION_SEND)
-            waIntent.putExtra(Intent.EXTRA_TEXT, message)
-            waIntent.action = Intent.ACTION_SEND
-            waIntent.setPackage("com.whatsapp")
-            waIntent.type = "text/plain"
-            startActivity(waIntent)
+            val sendIntent = Intent(Intent.ACTION_MAIN)
+            sendIntent.component = ComponentName(
+                "com.whatsapp",
+                "com.whatsapp.Conversation"
+            )
+            sendIntent.putExtra("jid", "$phoneNo@s.whatsapp.net")
+            sendIntent.putExtra(Intent.EXTRA_TEXT, message)
+            sendIntent.action = Intent.ACTION_SEND
+            sendIntent.setPackage("com.whatsapp")
+            sendIntent.type = "text/plain"
+            if (sendIntent.resolveActivity(packageManager) != null) {
+                startActivity(sendIntent)
+            } else {
+                sendIntent.component = ComponentName(
+                    "com.whatsapp.w4b",
+                    "com.whatsapp.Conversation"
+                )
+                sendIntent.setPackage("com.whatsapp.w4b")
+                if (sendIntent.resolveActivity(packageManager) != null) {
+                    startActivity(sendIntent)
+                } else {
+                    Toast.makeText(
+                        this@EmptySendActivity,
+                        "Whatsapp not installed!",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
         } catch (e: PackageManager.NameNotFoundException) {
             Toast.makeText(this, "WhatsApp not Installed", Toast.LENGTH_SHORT).show()
         }

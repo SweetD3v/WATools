@@ -57,7 +57,7 @@
                     android:id="@+id/imgSave"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="#2872CD"
+                    android:backgroundTint="@color/color_accent"
                     android:fontFamily="@font/karla_semibold"
                     android:text="Save"
                     android:textAllCaps="false"
@@ -108,7 +108,7 @@
                                     android:id="@+id/imgBmp1"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:src="@color/colorAccent" />
+                                    android:src="@color/color_accent" />
 
                                 <TextView
                                     android:id="@+id/txt1"
@@ -134,7 +134,7 @@
                                     android:id="@+id/imgBmp2"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:src="@color/colorAccent" />
+                                    android:src="@color/color_accent" />
 
                                 <TextView
                                     android:id="@+id/txt2"
@@ -160,7 +160,7 @@
                                     android:id="@+id/imgBmp3"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:src="@color/colorAccent" />
+                                    android:src="@color/color_accent" />
 
                                 <TextView
                                     android:id="@+id/txt3"
@@ -192,7 +192,7 @@
                                     android:id="@+id/imgBmp4"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:src="@color/colorAccent" />
+                                    android:src="@color/color_accent" />
 
                                 <TextView
                                     android:id="@+id/txt4"
@@ -219,7 +219,7 @@
                                     android:id="@+id/imgBmp5"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:src="@color/colorAccent" />
+                                    android:src="@color/color_accent" />
 
                                 <TextView
                                     android:id="@+id/txt5"
@@ -246,7 +246,7 @@
                                     android:id="@+id/imgBmp6"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:src="@color/colorAccent" />
+                                    android:src="@color/color_accent" />
 
                                 <TextView
                                     android:id="@+id/txt6"
@@ -279,7 +279,7 @@
                                     android:id="@+id/imgBmp7"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:src="@color/colorAccent" />
+                                    android:src="@color/color_accent" />
 
                                 <TextView
                                     android:id="@+id/txt7"
@@ -306,7 +306,7 @@
                                     android:id="@+id/imgBmp8"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:src="@color/colorAccent" />
+                                    android:src="@color/color_accent" />
 
                                 <TextView
                                     android:id="@+id/txt8"
@@ -333,7 +333,7 @@
                                     android:id="@+id/imgBmp9"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:src="@color/colorAccent" />
+                                    android:src="@color/color_accent" />
 
                                 <TextView
                                     android:id="@+id/txt9"
@@ -384,9 +384,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="16dp"
-                            android:backgroundTint="@color/colorPrimary"
+                            android:backgroundTint="@color/color_primary"
                             android:fontFamily="@font/poppins_medium"
-                            android:paddingVertical="8dp"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="8dp"
                             android:text="Share to Instagram"
                             android:textAllCaps="false"
                             android:textColor="@color/white"

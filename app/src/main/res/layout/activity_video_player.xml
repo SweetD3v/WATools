@@ -191,10 +191,10 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center|start"
-            android:layout_marginStart="10.0dip"
             android:background="@drawable/ripple"
-            android:padding="8dp"
-            app:srcCompat="@drawable/rotate" />
+            android:padding="12dp"
+            app:srcCompat="@drawable/rotate"
+            app:tint="@color/white" />
 
         <LinearLayout
             android:layout_width="match_parent"

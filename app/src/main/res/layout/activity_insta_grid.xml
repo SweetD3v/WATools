@@ -55,7 +55,7 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="8dp"
                     app:cardUseCompatPadding="true">
@@ -92,9 +92,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16sp"
-                    android:backgroundTint="@color/colorPrimary"
+                    android:backgroundTint="@color/color_primary"
                     android:fontFamily="@font/poppins_medium"
-                    android:paddingVertical="8dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="8dp"
                     android:text="Select Image"
                     android:textAllCaps="false"
                     android:textColor="@color/white"

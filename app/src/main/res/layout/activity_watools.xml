@@ -107,7 +107,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:fontFamily="@font/karla_semibold"
-                            android:text="@string/demo_text_long"
+                            android:text="Use &amp; access Whatsapp features in the web"
                             android:textColor="@color/text_unselected"
                             android:textSize="14sp" />
 
@@ -163,7 +163,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:fontFamily="@font/karla_semibold"
-                            android:text="@string/demo_text_long"
+                            android:text="Download Whatsapp stickers &amp; share with your friends"
                             android:textColor="@color/text_unselected"
                             android:textSize="14sp" />
                     </LinearLayout>
@@ -228,7 +228,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:fontFamily="@font/karla_semibold"
-                            android:text="@string/demo_text_long"
+                            android:text="Message directly without saving the phone number"
                             android:textColor="@color/text_unselected"
                             android:textSize="14sp" />
 
@@ -284,7 +284,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:fontFamily="@font/karla_semibold"
-                            android:text="@string/demo_text_long"
+                            android:text="Send empty message to anyone on the whatsapp chat"
                             android:textColor="@color/text_unselected"
                             android:textSize="14sp" />
                     </LinearLayout>
