@@ -31,7 +31,7 @@
             android:layout_toEndOf="@id/imgBack"
             android:gravity="center_vertical"
             android:maxLines="1"
-            android:text="@string/app_name"
+            android:text="@string/whatsapp_tools"
             android:textColor="@color/textColorPrimary"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -89,8 +89,7 @@
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
                                 android:layout_centerInParent="true"
-                                app:srcCompat="@drawable/ic_cartoonify"
-                                app:tint="#F9F5FF" />
+                                app:srcCompat="@drawable/ic_whatsapp_web"/>
                         </RelativeLayout>
 
                         <TextView
@@ -123,10 +122,10 @@
                     android:layout_weight="1"
                     android:clickable="true"
                     android:focusable="true"
-                    app:cardBackgroundColor="#FFF9E6"
+                    app:cardBackgroundColor="#E6FFF4"
                     app:cardCornerRadius="16dp"
                     app:cardElevation="0dp"
-                    app:rippleColor="#33CABAB0">
+                    app:rippleColor="#33B0CABD">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -138,15 +137,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@drawable/rounded_bg_white_16"
-                            android:backgroundTint="#FFC107"
+                            android:backgroundTint="#07FF7F"
                             android:padding="20dp">
 
                             <androidx.appcompat.widget.AppCompatImageView
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
                                 android:layout_centerInParent="true"
-                                app:srcCompat="@drawable/ic_cartoonify"
-                                app:tint="#FFF0E9" />
+                                app:srcCompat="@drawable/ic_whatsapp_stickers"/>
                         </RelativeLayout>
 
                         <TextView
@@ -188,10 +186,10 @@
                     android:layout_weight="1"
                     android:clickable="true"
                     android:focusable="true"
-                    app:cardBackgroundColor="#F9F5FF"
+                    app:cardBackgroundColor="#FFF7F5"
                     app:cardCornerRadius="16dp"
                     app:cardElevation="0dp"
-                    app:rippleColor="#33A89BBC">
+                    app:rippleColor="#33BCA39B">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -203,15 +201,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@drawable/rounded_bg_white_16"
-                            android:backgroundTint="#53289A"
+                            android:backgroundTint="#CA340D"
                             android:padding="20dp">
 
                             <androidx.appcompat.widget.AppCompatImageView
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
                                 android:layout_centerInParent="true"
-                                app:srcCompat="@drawable/ic_cartoonify"
-                                app:tint="#F9F5FF" />
+                                app:srcCompat="@drawable/ic_direct_chat" />
                         </RelativeLayout>
 
                         <TextView
@@ -244,10 +241,10 @@
                     android:layout_weight="1"
                     android:clickable="true"
                     android:focusable="true"
-                    app:cardBackgroundColor="#FFF9E6"
+                    app:cardBackgroundColor="#F9F5FF"
                     app:cardCornerRadius="16dp"
                     app:cardElevation="0dp"
-                    app:rippleColor="#33CABAB0">
+                    app:rippleColor="#33A89BBC">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -259,15 +256,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@drawable/rounded_bg_white_16"
-                            android:backgroundTint="#FFC107"
+                            android:backgroundTint="#53289A"
                             android:padding="20dp">
 
                             <androidx.appcompat.widget.AppCompatImageView
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
                                 android:layout_centerInParent="true"
-                                app:srcCompat="@drawable/ic_cartoonify"
-                                app:tint="#FFF0E9" />
+                                app:srcCompat="@drawable/ic_empty_message" />
                         </RelativeLayout>
 
                         <TextView

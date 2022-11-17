@@ -187,7 +187,7 @@ class HomeStatusFragment : BaseFragment<FragmentHomeStatusBinding>(), WATypeChan
     }
 
     override fun onBackPressed() {
-
+        requireActivity().onBackPressed()
     }
 
     override fun onTypeChanged(type: Int) {

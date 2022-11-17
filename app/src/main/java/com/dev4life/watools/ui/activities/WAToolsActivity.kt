@@ -8,7 +8,6 @@ import com.dev4life.watools.whatsapp_tools.wa_web.WebviewActivity
 import com.whats.stickers.EntryActivity
 
 class WAToolsActivity : BaseActivity() {
-
     val binding by lazy { ActivityWatoolsBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {

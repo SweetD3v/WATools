@@ -35,7 +35,7 @@
                 android:layout_toEndOf="@id/imgBack"
                 android:gravity="center_vertical"
                 android:maxLines="1"
-                android:text="@string/app_name"
+                android:text="@string/instagram_downloader"
                 android:textColor="@color/textColorPrimary"
                 android:textSize="20sp"
                 android:textStyle="bold" />

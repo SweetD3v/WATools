@@ -7,11 +7,12 @@ import androidx.appcompat.app.AppCompatActivity
 import com.dev4life.watools.R
 import com.dev4life.watools.databinding.ActivityPhotocmpHomeBinding
 import com.dev4life.watools.tools.mycreation.MyCreationToolsActivity
+import com.dev4life.watools.ui.activities.BaseActivity
 import com.dev4life.watools.utils.AdsUtils
 import com.dev4life.watools.utils.NetworkState
 import gun0912.tedimagepicker.builder.TedImagePicker.Companion.with
 
-class PhotoCmpHomeActivity : AppCompatActivity() {
+class PhotoCmpHomeActivity : BaseActivity() {
     companion object {
         const val SELECTED_PHOTO = "SELECTED_PHOTO"
     }

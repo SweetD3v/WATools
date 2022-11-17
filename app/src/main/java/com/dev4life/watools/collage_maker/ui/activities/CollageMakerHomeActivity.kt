@@ -6,12 +6,13 @@ import androidx.appcompat.app.AppCompatActivity
 import com.dev4life.watools.R
 import com.dev4life.watools.databinding.ActivityCollageMakerHomeBinding
 import com.dev4life.watools.tools.mycreation.MyCreationToolsActivity
+import com.dev4life.watools.ui.activities.BaseActivity
 import com.dev4life.watools.ui.fragments.HomeFragment
 import com.dev4life.watools.utils.AdsUtils
 import com.dev4life.watools.utils.NetworkState
 import gun0912.tedimagepicker.builder.TedImagePicker
 
-class CollageMakerHomeActivity : AppCompatActivity() {
+class CollageMakerHomeActivity : BaseActivity() {
 
     val binding by lazy { ActivityCollageMakerHomeBinding.inflate(layoutInflater) }
 

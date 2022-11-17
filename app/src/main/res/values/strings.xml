@@ -93,6 +93,14 @@
     <string name="whatsapp_business">Whatsapp Business</string>
     <string name="cancel">Cancel</string>
     <string name="enter_your_text_here">Enter your text here</string>
+    <string name="cartoonify">Cartoonify</string>
+    <string name="sketchify">Sketchify</string>
+    <string name="my_creation">My Creation</string>
+    <string name="facebook_downloader">Facebook Downloader</string>
+    <string name="instagram_downloader">Instagram Downloader</string>
+    <string name="direct_chat">Direct Chat</string>
+    <string name="empty_msg">Empty Message</string>
+    <string name="whatsapp_tools">Whatsapp Tools</string>
 
     <string-array name="wallp_arr">
         <item>https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj2fJjphUzRq64EoCViXztAyJXBE6kzAnIAf6sJKArZzASRmUaJESz2r1qWMzUZxuXHaAR3eJuOGxiQej_3hdFzaBkV_OQDwPhjtBt26EGoqOoy6LkvDNq65oes5QZk5Cv__RagBLcBDkvL-4riMOdFbbK5Dwnms_E628Mh6P1OfhwHn35r8yMR6poY/s1280/photo_2022-09-17_06-02-57.jpg</item>

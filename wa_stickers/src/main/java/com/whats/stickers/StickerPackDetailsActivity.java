@@ -91,6 +91,11 @@ public class StickerPackDetailsActivity extends AddStickerPackActivity {
             getSupportActionBar().setTitle(showUpButton ? getResources().getString(R.string.title_activity_sticker_pack_details_multiple_pack) : getResources().getQuantityString(R.plurals.title_activity_sticker_packs_list, 1));
         }
         findViewById(R.id.sticker_pack_animation_indicator).setVisibility(stickerPack.animatedStickerPack ? View.VISIBLE : View.GONE);
+
+        ((TextView) findViewById(R.id.app_title)).setText(stickerPack.name);
+        findViewById(R.id.imgBack).setOnClickListener(v -> {
+            onBackPressed();
+        });
     }
 
     private void launchInfoActivity(String publisherWebsite, String publisherEmail, String privacyPolicyWebsite, String licenseAgreementWebsite, String trayIconUriString) {
@@ -119,7 +124,6 @@ public class StickerPackDetailsActivity extends AddStickerPackActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
 
     private final ViewTreeObserver.OnGlobalLayoutListener pageLayoutListener = new ViewTreeObserver.OnGlobalLayoutListener() {
         @Override
@@ -210,5 +214,10 @@ public class StickerPackDetailsActivity extends AddStickerPackActivity {
                 stickerPackDetailsActivity.updateAddUI(isWhitelisted);
             }
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
     }
 }

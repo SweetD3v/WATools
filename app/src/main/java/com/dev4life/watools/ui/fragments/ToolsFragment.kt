@@ -3,6 +3,7 @@ package com.dev4life.watools.ui.fragments
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import com.dev4life.watools.R
 import com.dev4life.watools.collage_maker.ui.activities.CollageMakerHomeActivity
@@ -427,6 +428,6 @@ class ToolsFragment : BaseFragment<FragmentToolsBinding>() {
     }
 
     override fun onBackPressed() {
-
+        requireActivity().onBackPressed()
     }
 }

@@ -12,9 +12,11 @@ import android.app.Dialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 
 public abstract class BaseActivity extends AppCompatActivity {
@@ -22,6 +24,12 @@ public abstract class BaseActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
+    }
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        ExtensionsKt.setLightStatusBarColor(getWindow(), ContextCompat.getColor(this, R.color.white));
     }
 
     public static final class MessageDialogFragment extends DialogFragment {

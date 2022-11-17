@@ -41,6 +41,9 @@ public class StickerPackListActivity extends AddStickerPackActivity {
             getSupportActionBar().setTitle(getResources().getQuantityString(R.plurals.title_activity_sticker_packs_list, stickerPackList.size()));
         }
 
+        findViewById(R.id.imgBack).setOnClickListener(v -> {
+            onBackPressed();
+        });
     }
 
     @Override

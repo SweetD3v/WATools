@@ -45,14 +45,14 @@ public class EntryActivity extends BaseActivity {
             final Intent intent = new Intent(this, StickerPackListActivity.class);
             intent.putParcelableArrayListExtra(StickerPackListActivity.EXTRA_STICKER_PACK_LIST_DATA, stickerPackList);
             startActivity(intent);
-            finish();
+            onBackPressed();
             overridePendingTransition(0, 0);
         } else {
             final Intent intent = new Intent(this, StickerPackDetailsActivity.class);
             intent.putExtra(StickerPackDetailsActivity.EXTRA_SHOW_UP_BUTTON, false);
             intent.putExtra(StickerPackDetailsActivity.EXTRA_STICKER_PACK_DATA, stickerPackList.get(0));
             startActivity(intent);
-            finish();
+            onBackPressed();
             overridePendingTransition(0, 0);
         }
     }
@@ -114,5 +114,10 @@ public class EntryActivity extends BaseActivity {
                 }
             }
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
     }
 }
