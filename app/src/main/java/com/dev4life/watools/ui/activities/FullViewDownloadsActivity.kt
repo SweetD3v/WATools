@@ -17,10 +17,7 @@ import com.dev4life.watools.databinding.ActivityFullViewBinding
 import com.dev4life.watools.databinding.ItemFullViewBinding
 import com.dev4life.watools.models.Media
 import com.dev4life.watools.tools.VideoViewActivity
-import com.dev4life.watools.utils.FileUtilsss
-import com.dev4life.watools.utils.RootDirectoryWhatsappShow
-import com.dev4life.watools.utils.getBitmapFromUri
-import com.dev4life.watools.utils.getMedia
+import com.dev4life.watools.utils.*
 
 class FullViewDownloadsActivity : AppCompatActivity() {
     val binding by lazy { ActivityFullViewBinding.inflate(layoutInflater) }
@@ -31,6 +28,7 @@ class FullViewDownloadsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        setDarkStatusBar(window.decorView, this)
 
         if (intent.hasExtra("type")) {
             isVideo = intent.getStringExtra("type").equals("video")

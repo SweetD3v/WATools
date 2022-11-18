@@ -34,6 +34,7 @@ class PhotoFilterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        setDarkStatusBar(window.decorView, this)
 
         if (NetworkState.isOnline())
             AdsUtils.loadBanner(

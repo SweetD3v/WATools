@@ -173,7 +173,7 @@ class FBDownloaderHomeActivity : BaseActivity() {
             val twitterList = mutableListOf<String>()
             val vimeoList = mutableListOf<String>()
             for (i in clipboardItems.indices) {
-                if (clipboardItems[i].contains("www.facebook.com")) {
+                if (clipboardItems[i].contains("fb.watch")) {
                     fbList.add(clipboardItems[i])
                 }
             }

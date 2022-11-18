@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import com.dev4life.watools.databinding.ActivityDirectChatBinding
+import com.dev4life.watools.utils.setDarkStatusBar
 
 
 class DirectChatActivity : BaseActivity() {

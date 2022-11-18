@@ -42,6 +42,7 @@ class FullViewWASavedActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        setDarkStatusBar(window.decorView, this)
 
         binding.run {
 
@@ -114,18 +115,19 @@ class FullViewWASavedActivity : AppCompatActivity() {
 
             fabShare.setOnClickListener {
                 val image = imagesList[binding.viewPagerMedia.currentItem]
-                if (image.uri.toString().endsWith(".jpg")
-                    or image.uri.toString().endsWith(".png")
-                ) {
+                Log.e("TAG", "onCreate: ${image.uri}")
+                if (contentResolver.getType(image.uri)?.contains("image", true) == true) {
                     val bitmap =
                         if (image.uri.toString().endsWith(".jpg")
                             or image.uri.toString().endsWith(".png")
                         ) getBitmapFromUri(this@FullViewWASavedActivity, image.uri)
                         else getVideoThumbnail(this@FullViewWASavedActivity, image.uri)
 
-                    saveImageTemp(bitmap)
+                    shareMediaUri(this@FullViewWASavedActivity, arrayListOf(image.uri))
+//                    saveImageTemp(bitmap)
                 } else {
-                    saveVideoTemp(image.uri)
+//                    saveVideoTemp(image.uri)
+                    shareMediaUri(this@FullViewWASavedActivity, arrayListOf(image.uri))
                 }
             }
 

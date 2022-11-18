@@ -42,7 +42,7 @@ class FullViewWhatsappActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        setDarkStatusBarColor(this, R.color.black)
+        setDarkStatusBar(window.decorView, this)
 
         binding.run {
 
@@ -173,20 +173,29 @@ class FullViewWhatsappActivity : AppCompatActivity() {
 //            } else {
 //                executeImageOld()
 //            }
-            getMediaWA(this) { list ->
-                val imagesListNew = list
-                if (this.imagesList.size != imagesListNew.size)
-                    imagesList = imagesListNew
-                Handler(Looper.getMainLooper()).post {
-                    refreshAdapter()
-                }
-            }
+//            getMediaWA(this) { list ->
+//                val imagesListNew = list
+//                if (this.imagesList.size != imagesListNew.size)
+//                    imagesList = imagesListNew
+//                Handler(Looper.getMainLooper()).post {
+//                    refreshAdapter()
+//                }
+//            }
         } else {
             binding.fabSetWP.visibility = View.VISIBLE
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                loadVideo()
-            } else {
-                executeVideoOld()
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+//                loadVideo()
+//            } else {
+//                executeVideoOld()
+//            }
+        }
+
+        getMediaWA(this) { list ->
+            val imagesListNew = list
+            if (this.imagesList.size != imagesListNew.size)
+                imagesList = imagesListNew
+            Handler(Looper.getMainLooper()).post {
+                refreshAdapter()
             }
         }
 
