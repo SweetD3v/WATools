@@ -57,7 +57,7 @@ public class CollageSaveShareActivity extends AppCompatActivity {
 
         String string = getIntent().getExtras().getString("path");
         File file = new File(string);
-        Glide.with(getApplicationContext()).load(file).into((ImageView) findViewById(R.id.preview));
+        Glide.with(this).load(file).into(preview);
 
         final ImagePopup imagePopup = new ImagePopup(this);
         imagePopup.setWindowHeight(800);
