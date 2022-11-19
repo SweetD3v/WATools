@@ -40,13 +40,14 @@ class WAToolsApp : MultiDexApplication(), Application.ActivityLifecycleCallbacks
     override fun onCreate() {
         super.onCreate()
         mInstance = this
+
         Fresco.initialize(this)
         registerActivityLifecycleCallbacks(this)
         ProcessLifecycleOwner.get().lifecycle.addObserver(this)
         MobileAds.initialize(this) {}
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-
         appOpenAdManager = AppOpenAdManager()
+
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
     }
 
     fun buildHttpDataSourceFactory(bandwidthMeter: DefaultBandwidthMeter?): HttpDataSource.Factory {
