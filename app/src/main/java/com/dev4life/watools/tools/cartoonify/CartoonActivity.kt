@@ -5,9 +5,8 @@ import android.graphics.*
 import android.os.Bundle
 import android.util.Base64
 import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
-import com.demo.bitmapops.JniBitmapHolder
+//import com.demo.bitmapops.JniBitmapHolder
 import com.dev4life.watools.R
 import com.dev4life.watools.databinding.ActivityCartoonBinding
 import com.dev4life.watools.tools.BaseActivity
@@ -15,12 +14,6 @@ import com.dev4life.watools.utils.AdsUtils
 import com.dev4life.watools.utils.AsyncTaskRunner
 import com.dev4life.watools.utils.NetworkState
 import com.dev4life.watools.utils.getBitmapFromUri
-import org.opencv.android.OpenCVLoader
-import org.opencv.android.Utils
-import org.opencv.core.Core
-import org.opencv.core.CvType
-import org.opencv.core.Mat
-import org.opencv.imgproc.Imgproc
 import java.io.ByteArrayOutputStream
 import java.nio.IntBuffer
 
@@ -29,21 +22,21 @@ class CartoonActivity : BaseActivity() {
     companion object {
         const val SELECTED_PHOTO = "SELECTED_PHOTO"
 
-        init {
-            if (OpenCVLoader.initDebug())
-                Log.e("TAG", ": OpenCV460 Loaded")
-            else Log.e("TAG", ": OpenCV460 Loading Error")
-        }
+//        init {
+//            if (OpenCVLoader.initDebug())
+//                Log.e("TAG", ": OpenCV460 Loaded")
+//            else Log.e("TAG", ": OpenCV460 Loading Error")
+//        }
     }
 
-    var imgMat: Mat? = null
-    var tempMat1: Mat? = null
-    var tempMat2: Mat? = null
+    //    var imgMat: Mat? = null
+//    var tempMat1: Mat? = null
+//    var tempMat2: Mat? = null
     var finalBitmapImage: Bitmap? = null
     var orgBitmap: Bitmap? = null
 
     val binding by lazy { ActivityCartoonBinding.inflate(layoutInflater) }
-    var instance: JniBitmapHolder? = null
+//    var instance: JniBitmapHolder? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,26 +60,26 @@ class CartoonActivity : BaseActivity() {
             intent.getStringExtra(SELECTED_PHOTO)?.toUri()
         )
         orgBitmap?.let {
-            instance = JniBitmapHolder.getInstance(it)
-            object : AsyncTaskRunner<Bitmap, Bitmap?>(this) {
-                override fun doInBackground(params: Bitmap?): Bitmap? {
-                    instance?.storeBitmap()
-//                                instance?.rotateBitmapCw90()
-                    instance?.getBitmap()?.let { bmp ->
-                        return bmp
-                    }
-                    return null
-                }
-
-                override fun onPostExecute(result: Bitmap?) {
-                    result?.let { it1 ->
-                        val canvas = Canvas(result)
-                        instance?.drawBitmapOnCanvas(canvas)
-                        setImage(it1)
-                    }
-                    super.onPostExecute(result)
-                }
-            }.execute(it, true)
+//            instance = JniBitmapHolder.getInstance(it)
+//            object : AsyncTaskRunner<Bitmap, Bitmap?>(this) {
+//                override fun doInBackground(params: Bitmap?): Bitmap? {
+//                    instance?.storeBitmap()
+////                                instance?.rotateBitmapCw90()
+//                    instance?.getBitmap()?.let { bmp ->
+//                        return bmp
+//                    }
+//                    return null
+//                }
+//
+//                override fun onPostExecute(result: Bitmap?) {
+//                    result?.let { it1 ->
+//                        val canvas = Canvas(result)
+//                        instance?.drawBitmapOnCanvas(canvas)
+//                        setImage(it1)
+//                    }
+//                    super.onPostExecute(result)
+//                }
+//            }.execute(it, true)
         }
 
         binding.btnCartoonifyImage.setOnClickListener {
@@ -140,25 +133,25 @@ class CartoonActivity : BaseActivity() {
         try {
             orgBitmap?.let { bmp ->
                 object : AsyncTaskRunner<Bitmap, Bitmap>(this) {
-                    override fun doInBackground(bitmap: Bitmap?): Bitmap {
-                        val bitmapFinal = cartoonifyImageNew(
-                            bitmap,
-                            12,
-                            12,
-                            10.0,
-                            10.0,
-                            7,
-                            3
-                        )
-                        if (bitmapFinal != null)
-                            return bitmapFinal
-                        else return bmp
+                    override fun doInBackground(params: Bitmap?): Bitmap {
+//                        val bitmapFinal = cartoonifyImageNew(
+//                            params,
+//                            12,
+//                            12,
+//                            10.0,
+//                            10.0,
+//                            7,
+//                            3
+//                        )
+//                        if (bitmapFinal != null)
+//                            return bitmapFinal
+                        return bmp
                     }
 
-                    override fun onPostExecute(resultBmp: Bitmap?) {
-                        super.onPostExecute(resultBmp)
+                    override fun onPostExecute(result: Bitmap?) {
+                        super.onPostExecute(result)
 
-                        finalBitmapImage = resultBmp
+                        finalBitmapImage = result
                         AdsUtils.loadInterstitialAd(this@CartoonActivity,
                             getString(R.string.interstitial_id),
                             object : AdsUtils.Companion.FullScreenCallback() {
@@ -181,70 +174,70 @@ class CartoonActivity : BaseActivity() {
         }
     }
 
-    private fun cartoonifyImageNew(
-        bitmap: Bitmap?,
-        numBilateral: Int,
-        bDiameter: Int,
-        sigmaColor: Double,
-        sigmaSpace: Double,
-        mDiameter: Int,
-        eDiameter: Int
-    ): Bitmap? {
-        if (bitmap != null) {
-            imgMat = Mat(bitmap.height, bitmap.width, CvType.CV_8UC3)
-            tempMat1 = Mat(bitmap.height, bitmap.width, CvType.CV_8UC3)
-            tempMat2 = Mat(bitmap.height, bitmap.width, CvType.CV_8UC3)
-        }
-
-        Utils.bitmapToMat(bitmap, imgMat)
-
-        imgMat!!.copyTo(tempMat1)
-        imgMat!!.copyTo(tempMat2)
-
-        Imgproc.cvtColor(tempMat1, tempMat1, Imgproc.COLOR_BGRA2RGB)
-        Imgproc.cvtColor(tempMat2, tempMat2, Imgproc.COLOR_BGRA2RGB)
-
-        for (i in 0..1) {
-            Imgproc.pyrDown(tempMat1, tempMat1)
-        }
-        for (i in 0 until numBilateral) {
-            Imgproc.bilateralFilter(tempMat1, tempMat2, bDiameter, sigmaColor, sigmaSpace)
-            System.gc()
-            tempMat2!!.copyTo(tempMat1)
-        }
-        for (i in 0..1) {
-            Imgproc.pyrUp(tempMat1, tempMat1)
-        }
-        Imgproc.resize(tempMat1, tempMat1, imgMat!!.size())
-        Imgproc.cvtColor(tempMat2, tempMat2, Imgproc.COLOR_RGB2GRAY)
-        Imgproc.cvtColor(imgMat, tempMat2, Imgproc.COLOR_RGB2GRAY)
-
-        Imgproc.cvtColor(imgMat, imgMat, Imgproc.COLOR_RGB2GRAY)
-        Imgproc.medianBlur(tempMat2, imgMat, mDiameter)
-
-        Imgproc.adaptiveThreshold(
-            imgMat,
-            tempMat2,
-            255.0,
-            Imgproc.ADAPTIVE_THRESH_MEAN_C,
-            Imgproc.THRESH_BINARY,
-            eDiameter,
-            2.0
-        )
-        Imgproc.cvtColor(tempMat2, tempMat2, Imgproc.COLOR_GRAY2RGB)
-        Imgproc.cvtColor(imgMat, imgMat, Imgproc.COLOR_GRAY2RGB)
-        Core.bitwise_and(tempMat1, tempMat2, imgMat)
-        Imgproc.cvtColor(imgMat, imgMat, Imgproc.COLOR_RGB2BGRA)
-        Utils.matToBitmap(imgMat, bitmap)
-        if (bitmap != null) {
-            finalBitmapImage = bitmap.copy(bitmap.config, true)
-        }
-        imgMat!!.release()
-        tempMat1!!.release()
-        tempMat2!!.release()
-
-        return finalBitmapImage
-    }
+//    private fun cartoonifyImageNew(
+//        bitmap: Bitmap?,
+//        numBilateral: Int,
+//        bDiameter: Int,
+//        sigmaColor: Double,
+//        sigmaSpace: Double,
+//        mDiameter: Int,
+//        eDiameter: Int
+//    ): Bitmap? {
+//        if (bitmap != null) {
+//            imgMat = Mat(bitmap.height, bitmap.width, CvType.CV_8UC3)
+//            tempMat1 = Mat(bitmap.height, bitmap.width, CvType.CV_8UC3)
+//            tempMat2 = Mat(bitmap.height, bitmap.width, CvType.CV_8UC3)
+//        }
+//
+//        Utils.bitmapToMat(bitmap, imgMat)
+//
+//        imgMat!!.copyTo(tempMat1)
+//        imgMat!!.copyTo(tempMat2)
+//
+//        Imgproc.cvtColor(tempMat1, tempMat1, Imgproc.COLOR_BGRA2RGB)
+//        Imgproc.cvtColor(tempMat2, tempMat2, Imgproc.COLOR_BGRA2RGB)
+//
+//        for (i in 0..1) {
+//            Imgproc.pyrDown(tempMat1, tempMat1)
+//        }
+//        for (i in 0 until numBilateral) {
+//            Imgproc.bilateralFilter(tempMat1, tempMat2, bDiameter, sigmaColor, sigmaSpace)
+//            System.gc()
+//            tempMat2!!.copyTo(tempMat1)
+//        }
+//        for (i in 0..1) {
+//            Imgproc.pyrUp(tempMat1, tempMat1)
+//        }
+//        Imgproc.resize(tempMat1, tempMat1, imgMat!!.size())
+//        Imgproc.cvtColor(tempMat2, tempMat2, Imgproc.COLOR_RGB2GRAY)
+//        Imgproc.cvtColor(imgMat, tempMat2, Imgproc.COLOR_RGB2GRAY)
+//
+//        Imgproc.cvtColor(imgMat, imgMat, Imgproc.COLOR_RGB2GRAY)
+//        Imgproc.medianBlur(tempMat2, imgMat, mDiameter)
+//
+//        Imgproc.adaptiveThreshold(
+//            imgMat,
+//            tempMat2,
+//            255.0,
+//            Imgproc.ADAPTIVE_THRESH_MEAN_C,
+//            Imgproc.THRESH_BINARY,
+//            eDiameter,
+//            2.0
+//        )
+//        Imgproc.cvtColor(tempMat2, tempMat2, Imgproc.COLOR_GRAY2RGB)
+//        Imgproc.cvtColor(imgMat, imgMat, Imgproc.COLOR_GRAY2RGB)
+//        Core.bitwise_and(tempMat1, tempMat2, imgMat)
+//        Imgproc.cvtColor(imgMat, imgMat, Imgproc.COLOR_RGB2BGRA)
+//        Utils.matToBitmap(imgMat, bitmap)
+//        if (bitmap != null) {
+//            finalBitmapImage = bitmap.copy(bitmap.config, true)
+//        }
+//        imgMat!!.release()
+//        tempMat1!!.release()
+//        tempMat2!!.release()
+//
+//        return finalBitmapImage
+//    }
 
     private fun sketchifyImage() {
         finalBitmapImage = Changetosketch(orgBitmap)

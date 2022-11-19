@@ -1,6 +1,7 @@
 package com.dev4life.watools.ui.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import com.dev4life.watools.adapter.AllMediaAdapter
@@ -38,7 +39,8 @@ class AllImagesFragment : BaseFragment<FragmentWaimagesBinding>() {
             getMedia(ctx) { list ->
                 if (imagesList.size != list.size) {
                     for (media in list) {
-                        if (!media.isVideo) {
+                        Log.e("TAG", "mediaPath: ${media.path}")
+                        if (!media.isVideo && !media.path.contains("Insta Grid", true)) {
                             imagesList.add(media)
                         }
                     }

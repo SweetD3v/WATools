@@ -75,7 +75,7 @@ fun setLightStatusBar(view: View, activity: AppCompatActivity) {
     }
 }
 
-fun setDarkStatusBar(view: View, activity: AppCompatActivity) {
+fun setDarkStatusBar(activity: AppCompatActivity) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
         activity.window.statusBarColor = ResourcesCompat.getColor(
             WAToolsApp.getInstance().resources, R.color.black, null

@@ -95,8 +95,11 @@ class WallpapersDetailsActivity : BaseActivity() {
             fabShare.setOnClickListener {
                 imageUrl = downloadUrl
                 imageUrl?.let { url ->
+                    val file = getExternalFilesDir("Wallpapers")
+                    if (file?.exists() == false)
+                        file.mkdirs()
                     BasicImageDownloader(this@WallpapersDetailsActivity)
-                        .saveImageToTemp(url, File(originalPath, "Wallpapers"), false, {
+                        .saveImageToTemp(url, file!!, false, {
                         }) {
                             Log.e("TAG", "onCreate: ${it}")
                             shareMediaUri(this@WallpapersDetailsActivity, arrayListOf(it))

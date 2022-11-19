@@ -108,7 +108,8 @@ class HomeStatusFragment : BaseFragment<FragmentHomeStatusBinding>(), WATypeChan
 
             try {
                 viewPagerStatus.orientation = ViewPager2.ORIENTATION_HORIZONTAL
-                viewPagerStatus.adapter = FragmentsAdapter(requireActivity())
+                if (viewPagerStatus.adapter == null)
+                    viewPagerStatus.adapter = FragmentsAdapter(requireActivity())
 
                 TabLayoutMediator(tabLayout, viewPagerStatus) { tab, position ->
                     tab.text = tabTitles[position]

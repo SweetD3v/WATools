@@ -3,16 +3,17 @@ package com.dev4life.watools.collage_maker.ui.activities;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.ceylonlabs.imageviewpopup.ImagePopup;
 import com.dev4life.watools.R;
 import com.dev4life.watools.databinding.CollageSaveLayoutBinding;
+import com.dev4life.watools.tools.BaseActivity;
 import com.dev4life.watools.tools.mycreation.MyCreationToolsActivity;
 import com.dev4life.watools.tools.photoeditor.PicEditorHomeActivity;
 import com.dev4life.watools.utils.AdsUtils;
@@ -20,7 +21,7 @@ import com.dev4life.watools.utils.NetworkState;
 
 import java.io.File;
 
-public class CollageSaveShareActivity extends AppCompatActivity {
+public class CollageSaveShareActivity extends BaseActivity {
     CollageSaveLayoutBinding binding;
 
     ImageView preview;
@@ -55,7 +56,8 @@ public class CollageSaveShareActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        String string = getIntent().getExtras().getString("path");
+        String string = getIntent().getStringExtra("path");
+        Log.e("TAG", "onCreatePath: " + string);
         File file = new File(string);
         Glide.with(this).load(file).into(preview);
 

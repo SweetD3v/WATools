@@ -19,6 +19,7 @@ import android.view.View
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
@@ -42,18 +43,18 @@ import com.dev4life.watools.collage_maker.ui.fragments.FilterDialogFragment
 import com.dev4life.watools.collage_maker.ui.fragments.PicsartCropDialogFragment
 import com.dev4life.watools.collage_maker.ui.interfaces.FilterListener
 import com.dev4life.watools.collage_maker.ui.interfaces.Sticker_interfce
-import com.dev4life.watools.collage_maker.utils.FileUtils.*
+import com.dev4life.watools.collage_maker.utils.FileUtils.createBitmap
+import com.dev4life.watools.collage_maker.utils.FileUtils.saveBitmapAsFile
 import com.dev4life.watools.collage_maker.utils.SystemUtils
 import com.dev4life.watools.collage_maker.utils.UtilsFilter
 import com.dev4life.watools.databinding.ActivityPuzzleBinding
-import com.dev4life.watools.tools.BaseActivity
 import com.dev4life.watools.tools.photo_filters.PhotoFiltersUtils
 import com.dev4life.watools.ui.activities.MainActivity
 import com.dev4life.watools.ui.fragments.HomeFragment
 import com.dev4life.watools.utils.AdsUtils
-import com.dev4life.watools.utils.FileUtilsss.Companion.saveBitmapAsFile
 import com.dev4life.watools.utils.NetworkState
 import com.dev4life.watools.utils.dpToPx
+import com.dev4life.watools.utils.setDarkStatusBar
 import com.google.android.material.button.MaterialButton
 import com.squareup.picasso.Picasso
 import com.squareup.picasso.Picasso.LoadedFrom
@@ -64,7 +65,7 @@ import org.wysaid.nativePort.CGENativeLibrary
 import org.wysaid.nativePort.CGENativeLibrary.LoadImageCallback
 import java.io.IOException
 
-class CollageViewActivity : BaseActivity(), BottomToolsAdapter.OnItemSelected,
+class CollageViewActivity : AppCompatActivity(), BottomToolsAdapter.OnItemSelected,
     AspectRatioPreviewAdapter.OnNewSelectedListener,
     CollegeBGAdapter.BackgroundChangeListener, FilterListener,
     PicsartCropDialogFragment.OnCropPhoto,
@@ -231,17 +232,15 @@ class CollageViewActivity : BaseActivity(), BottomToolsAdapter.OnItemSelected,
             }
         }
 
-    override fun onCreate(bundle: Bundle?) {
-        super.onCreate(bundle)
-        requestWindowFeature(1)
-        window.setFlags(1024, 1024)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        setDarkStatusBar(this)
         if (NetworkState.isOnline()) AdsUtils.loadBanner(
             this, getString(R.string.banner_id_details),
             binding.bannerContainer
         )
         toolbar = findViewById(R.id.toolbar)
-        (toolbar.findViewById<View>(R.id.app_title) as TextView).text = ""
         setSupportActionBar(toolbar)
         toolbar.setNavigationOnClickListener({ v: View? -> onBackPressed() })
         PhotoFiltersUtils.string = "XYZ"
@@ -299,8 +298,12 @@ class CollageViewActivity : BaseActivity(), BottomToolsAdapter.OnItemSelected,
             rvPieceControl.layoutParams = layoutParams
             currentMode = NONE
         }
-        puzzleView.post { PhotoFiltersUtils.loadPhoto(this,
-        lstPaths, puzzleLayout, puzzleView, targets, deviceWidth) }
+        puzzleView.post {
+            PhotoFiltersUtils.loadPhoto(
+                this,
+                lstPaths, puzzleLayout, puzzleView, targets, deviceWidth
+            )
+        }
         findViewById<ImageView>(R.id.imgCloseLayout).setOnClickListener(onClickListener)
         findViewById<ImageView>(R.id.imgSaveLayout).setOnClickListener(onClickListener)
         findViewById<ImageView>(R.id.imgCloseBackground).setOnClickListener(onClickListener)
@@ -1105,26 +1108,18 @@ class CollageViewActivity : BaseActivity(), BottomToolsAdapter.OnItemSelected,
             bitmap2.recycle()
             val saveBitmapAsFile =
                 saveBitmapAsFile(createBitmap, "Collage Maker") ?: return null
-            return try {
-                MediaScannerConnection.scanFile(
-                    applicationContext,
-                    arrayOf(saveBitmapAsFile.absolutePath),
-                    null as Array<String?>?
-                ) { str: String?, uri: Uri? -> }
-                createBitmap.recycle()
-                saveBitmapAsFile.absolutePath
-            } catch (e: Exception) {
-                createBitmap.recycle()
-                null
-            } catch (th: Throwable) {
-                createBitmap.recycle()
-                throw th
-            }
+            createBitmap.recycle()
+            return saveBitmapAsFile.absolutePath
         }
 
         override fun onPostExecute(str: String?) {
             showLoading(false)
             isSaved = true
+            MediaScannerConnection.scanFile(
+                applicationContext,
+                arrayOf(str),
+                null as Array<String?>?
+            ) { str: String?, uri: Uri? -> }
             AdsUtils.loadInterstitialAd(this@CollageViewActivity,
                 getString(R.string.interstitial_id),
                 object : AdsUtils.Companion.FullScreenCallback() {

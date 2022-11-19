@@ -104,17 +104,20 @@
                     <RelativeLayout
                         android:id="@+id/rlTxt"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/et_bg_insta1">
 
                         <EditText
                             android:id="@+id/etText"
                             android:layout_width="match_parent"
                             android:layout_height="56dp"
-                            android:background="@drawable/et_bg_insta1"
+                            android:layout_centerVertical="true"
+                            android:layout_toStartOf="@id/imgClear"
+                            android:background="@null"
                             android:fontFamily="@font/poppins_regular"
                             android:hint="@string/paste_facebook_link_here"
                             android:paddingStart="10dp"
-                            android:paddingEnd="36dp"
+                            android:paddingEnd="10dp"
                             android:singleLine="true"
                             android:textColor="@color/black"
                             android:textColorHint="@color/textcolor_hint"

@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -101,8 +103,8 @@ public class SplashDialog extends DialogFragment implements AdapterSplash.Splash
 
     @Nullable
     public View onCreateView(@NonNull LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup2, @Nullable Bundle bundle) {
-        getDialog().getWindow().requestFeature(1);
-        getDialog().getWindow().setFlags(1024, 1024);
+        getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+        getDialog().getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         View inflate = layoutInflater.inflate(R.layout.splash_layout, viewGroup2, false);
         this.viewGroup = viewGroup2;
         this.backgroundView = inflate.findViewById(R.id.backgroundView);

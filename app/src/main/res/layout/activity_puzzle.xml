@@ -19,7 +19,7 @@
             android:elevation="4dp"
             android:theme="@style/ThemeOverlay.AppCompat.DayNight.ActionBar"
             app:layout_constraintTop_toTopOf="parent"
-            app:navigationIcon="@drawable/ic_back">
+            app:navigationIcon="@drawable/ic_back_white">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -205,7 +205,7 @@
                 android:elevation="8dp"
                 app:layout_constraintBottom_toBottomOf="parent">
 
-                <ImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/imgCloseLayout"
                     android:layout_width="45.0dip"
                     android:layout_height="match_parent"
@@ -341,7 +341,8 @@
                     android:src="@drawable/ic_close"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/white" />
 
                 <TextView
                     android:id="@+id/tv_color"

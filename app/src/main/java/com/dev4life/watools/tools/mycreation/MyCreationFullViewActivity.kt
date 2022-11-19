@@ -42,7 +42,7 @@ class MyCreationFullViewActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        setDarkStatusBar(window.decorView, this)
+        setDarkStatusBar(this)
 
         type = intent.getStringExtra(MyCreationToolsActivity.CREATION_TYPE)
 
@@ -199,6 +199,12 @@ class MyCreationFullViewActivity : AppCompatActivity() {
                 }
                 if (imagesList?.size != imageListNew.size) {
                     imagesList = imageListNew
+
+                    if (type.equals("all"))
+                        this.imagesList = ArrayList(this.imagesList?.filter { mediaItem ->
+                            !mediaItem.path.contains("Insta Grid", true)
+                        } ?: arrayListOf())
+
                     refreshAdapter()
                 }
             }
@@ -206,6 +212,8 @@ class MyCreationFullViewActivity : AppCompatActivity() {
     }
 
     private fun refreshAdapter() {
+        this.imagesList?.sortByDescending { item-> item.date }
+
         imagesList.let {
             binding.run {
                 viewPagerMedia.orientation = ViewPager2.ORIENTATION_HORIZONTAL

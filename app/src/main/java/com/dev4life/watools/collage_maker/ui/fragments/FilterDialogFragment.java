@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
@@ -71,8 +73,8 @@ public class FilterDialogFragment extends DialogFragment implements FilterListen
 
     @Nullable
     public View onCreateView(@NonNull LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, @Nullable Bundle bundle) {
-        getDialog().getWindow().requestFeature(1);
-        getDialog().getWindow().setFlags(1024, 1024);
+        getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+        getDialog().getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         View inflate = layoutInflater.inflate(R.layout.filter_layout, viewGroup, false);
         this.rvFilterView = inflate.findViewById(R.id.rvFilterView);
         this.rvFilterView.setAdapter(new AdapterFilterView(this.lstFilterBitmap, getContext(), this, Arrays.asList(UtilsFilter.EFFECT_CONFIGS)));

@@ -11,6 +11,7 @@ import com.dev4life.watools.adapters.WAMediaSavedAdapter
 import com.dev4life.watools.databinding.FragmentWaimagesBinding
 import com.dev4life.watools.interfaces.WATypeChangeListener
 import com.dev4life.watools.models.Media
+import com.dev4life.watools.utils.RootDirectoryFBDownlaoder
 import com.dev4life.watools.utils.RootDirectoryWhatsappShow
 import com.dev4life.watools.utils.addOuterGridSpacing
 import com.dev4life.watools.utils.getMedia
@@ -81,7 +82,7 @@ class WADownloadsFragment : BaseFragment<FragmentWaimagesBinding>(), WATypeChang
 
     override fun onResume() {
         super.onResume()
-
+        Log.e("TAG", "onResumeDownload: ")
 //        if (allPermissionsGranted()) {
 //            onPermissionGranted()
 //        } else {
@@ -101,9 +102,8 @@ class WADownloadsFragment : BaseFragment<FragmentWaimagesBinding>(), WATypeChang
             getMedia(ctx, RootDirectoryWhatsappShow) { list ->
                 for (media in list) {
                     imageListNew.add(media)
+                    Log.e("TAG", "loadImagesDS: ${media.path}")
                 }
-                Log.e("TAG", "loadImagesNew: ${imageListNew.size}")
-                Log.e("TAG", "loadImages: ${imagesList.size}")
                 if (imageListNew.size != imagesList.size) {
                     imagesList = imageListNew
                     val waMediaAdapter = WAMediaSavedAdapter(ctx, imagesList)

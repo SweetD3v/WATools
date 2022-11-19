@@ -24,7 +24,6 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
-import android.view.Window;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
@@ -68,6 +67,7 @@ import com.dev4life.watools.tools.photo_filters.PhotoFiltersUtils;
 import com.dev4life.watools.ui.activities.MainActivity;
 import com.dev4life.watools.ui.fragments.HomeFragment;
 import com.dev4life.watools.utils.AdsUtils;
+import com.dev4life.watools.utils.DisplayUtilsKt;
 import com.dev4life.watools.utils.ExtensionsKt;
 import com.dev4life.watools.utils.FileUtilsss;
 import com.dev4life.watools.utils.NetworkState;
@@ -161,13 +161,11 @@ public class PicEditActivity extends AppCompatActivity implements OnPhotoEditorL
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         binding = ActivityPicEditBinding.inflate(getLayoutInflater());
+        DisplayUtilsKt.setDarkStatusBar(this);
 
         if (NetworkState.Companion.isOnline())
             AdsUtils.Companion.loadBanner(this, getString(R.string.banner_id_details),
                     binding.bannerContainer);
-
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(1024, 1024);
         setContentView(binding.getRoot());
         initViews();
         activity = this;
@@ -496,7 +494,6 @@ public class PicEditActivity extends AppCompatActivity implements OnPhotoEditorL
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.imgCloseAdjust:
-            case R.id.imgCloseBrush:
             case R.id.imgCloseFilter:
             case R.id.imgCloseOverlay:
             case R.id.imgSaveAdjust:
@@ -507,6 +504,14 @@ public class PicEditActivity extends AppCompatActivity implements OnPhotoEditorL
                 slideDownSaveView();
                 this.currentMode = EditingToolType.NONE;
                 return;
+            case R.id.imgCloseBrush:
+                new SaveFilterAsBitmap().execute();
+                this.compareAdjust.setVisibility(View.GONE);
+                slideDown(this.brushLayout);
+                slideUp(this.mRvTools);
+                slideDownSaveView();
+                this.currentMode = EditingToolType.NONE;
+                break;
             case R.id.imgSaveBrush:
                 showLoading(true);
                 runOnUiThread(() -> {

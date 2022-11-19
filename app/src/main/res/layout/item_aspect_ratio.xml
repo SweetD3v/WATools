@@ -7,5 +7,6 @@
         android:id="@+id/aspect_ratio_preview"
         android:layout_width="45.0dip"
         android:layout_height="45.0dip"
-        android:layout_centerInParent="true" />
+        android:layout_centerInParent="true"
+        android:background="@drawable/bg_rounded_4" />
 </RelativeLayout>

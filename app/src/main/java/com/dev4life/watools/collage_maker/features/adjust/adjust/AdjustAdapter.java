@@ -45,7 +45,7 @@ public class AdjustAdapter extends RecyclerView.Adapter<AdjustAdapter.ViewHolder
         viewHolder.toolName.setText(this.lstAdjusts.get(i).name);
         viewHolder.icon.setImageDrawable(this.selectedFilterIndex != i ? this.lstAdjusts.get(i).icon : this.lstAdjusts.get(i).selectedIcon);
         if (selectedFilterIndex == i) {
-            viewHolder.toolName.setTextColor(ContextCompat.getColor(context, R.color.textColorPrimary));
+            viewHolder.toolName.setTextColor(ContextCompat.getColor(context, R.color.color_accent));
         } else {
             viewHolder.toolName.setTextColor(ContextCompat.getColor(context, R.color.unselected_color));
         }
@@ -68,12 +68,10 @@ public class AdjustAdapter extends RecyclerView.Adapter<AdjustAdapter.ViewHolder
             super(view);
             this.icon = view.findViewById(R.id.icon);
             this.toolName = view.findViewById(R.id.tool_name);
-            view.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View view) {
-                    AdjustAdapter.this.selectedFilterIndex = ViewHolder.this.getLayoutPosition();
-                    AdjustAdapter.this.adjustListener.onAdjustSelected(AdjustAdapter.this.lstAdjusts.get(AdjustAdapter.this.selectedFilterIndex));
-                    AdjustAdapter.this.notifyDataSetChanged();
-                }
+            view.setOnClickListener(view1 -> {
+                selectedFilterIndex = ViewHolder.this.getLayoutPosition();
+                adjustListener.onAdjustSelected(lstAdjusts.get(selectedFilterIndex));
+                notifyDataSetChanged();
             });
         }
     }

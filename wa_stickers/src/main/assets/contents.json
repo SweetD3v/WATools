@@ -373,6 +373,195 @@
           ]
         }
       ]
+    },
+    {
+      "identifier": "3",
+      "name": "PokeMon",
+      "publisher": "Dev4Life",
+      "tray_image_file": "pokeeet_mon.png",
+      "image_data_version": "1",
+      "avoid_cache": false,
+      "publisher_email": "dev4life@gmail.com",
+      "publisher_website": "",
+      "privacy_policy_website": "",
+      "license_agreement_website": "",
+      "stickers": [
+        {
+          "image_file": "01_smile.webp",
+          "emojis": [
+            "☕",
+            "🙂"
+          ]
+        },
+        {
+          "image_file": "02_lol.webp",
+          "emojis": [
+            "😄",
+            "😀"
+          ]
+        },
+        {
+          "image_file": "03_rofl.webp",
+          "emojis": [
+            "😆",
+            "😂"
+          ]
+        },
+        {
+          "image_file": "04_sad.webp",
+          "emojis": [
+            "😩",
+            "😰"
+          ]
+        },
+        {
+          "image_file": "05_cry.webp",
+          "emojis": [
+            "😭",
+            "💧"
+          ]
+        },
+        {
+          "image_file": "06_love.webp",
+          "emojis": [
+            "😍",
+            "♥"
+          ]
+        },
+        {
+          "image_file": "07_hate.webp",
+          "emojis": [
+            "💔",
+            "👎"
+          ]
+        },
+        {
+          "image_file": "08_lovewithmug.webp",
+          "emojis": [
+            "😍",
+            "💑"
+          ]
+        },
+        {
+          "image_file": "09_lovewithcookie.webp",
+          "emojis": [
+            "😘",
+            "🍪"
+          ]
+        },
+        {
+          "image_file": "10_hmm.webp",
+          "emojis": [
+            "🤔",
+            "😐"
+          ]
+        },
+        {
+          "image_file": "11_upset.webp",
+          "emojis": [
+            "😱",
+            "😵"
+          ]
+        },
+        {
+          "image_file": "12_angry.webp",
+          "emojis": [
+            "😡",
+            "😠"
+          ]
+        },
+        {
+          "image_file": "13_curious.webp",
+          "emojis": [
+            "❓",
+            "🤔"
+          ]
+        },
+        {
+          "image_file": "14_weird.webp",
+          "emojis": [
+            "🌈",
+            "😜"
+          ]
+        },
+        {
+          "image_file": "15_bluescreen.webp",
+          "emojis": [
+            "💻",
+            "😩"
+          ]
+        },
+        {
+          "image_file": "16_angry.webp",
+          "emojis": [
+            "😡",
+            "😤"
+          ]
+        },
+        {
+          "image_file": "17_tired.webp",
+          "emojis": [
+            "😩",
+            "😨"
+          ]
+        },
+        {
+          "image_file": "18_workhard.webp",
+          "emojis": [
+            "💻",
+            "🌃"
+          ]
+        },
+        {
+          "image_file": "19_shine.webp",
+          "emojis": [
+            "🎉",
+            "✨"
+          ]
+        },
+        {
+          "image_file": "20_disgusting.webp",
+          "emojis": [
+            "🤮",
+            "👎"
+          ]
+        },
+        {
+          "image_file": "21_hi.webp",
+          "emojis": [
+            "🖐",
+            "🙋"
+          ]
+        },
+        {
+          "image_file": "22_bye.webp",
+          "emojis": [
+            "🖐",
+            "👋"
+          ]
+        },
+        {
+          "image_file": "23_greentea.webp",
+          "emojis": [
+            "🍵",
+            "😌"
+          ]
+        },
+        {
+          "image_file": "24_phone.webp",
+          "emojis": [
+            "📱",
+            "😦"
+          ]
+        },
+        {
+          "image_file": "25_battery.webp",
+          "emojis": [
+            "🔋",
+            "😵"
+          ]
+        }
+      ]
     }
   ]
 }

@@ -1,40 +1,38 @@
 package com.dev4life.watools.tools.cartoonify
 
+//import org.opencv.android.OpenCVLoader
+//import org.opencv.core.Mat
 import android.content.Intent
 import android.graphics.*
 import android.os.Bundle
 import android.util.Base64
-import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
-import com.demo.bitmapops.JniBitmapHolder
+//import com.demo.bitmapops.JniBitmapHolder
 import com.dev4life.watools.R
 import com.dev4life.watools.databinding.ActivitySketchifyBinding
 import com.dev4life.watools.tools.BaseActivity
 import com.dev4life.watools.utils.*
-import org.opencv.android.OpenCVLoader
-import org.opencv.core.Mat
 import java.io.ByteArrayOutputStream
 import java.nio.IntBuffer
 
 class SketchifyActivity : BaseActivity() {
     companion object {
-        init {
-            if (OpenCVLoader.initDebug())
-                Log.e("TAG", ": OpenCV460 Loaded")
-            else Log.e("TAG", ": OpenCV460 Loading Error")
-        }
+//        init {
+//            if (OpenCVLoader.initDebug())
+//                Log.e("TAG", ": OpenCV460 Loaded")
+//            else Log.e("TAG", ": OpenCV460 Loading Error")
+//        }
     }
 
     val binding by lazy { ActivitySketchifyBinding.inflate(layoutInflater) }
 
-    var imgMat: Mat? = null
-    var tempMat1: Mat? = null
-    var tempMat2: Mat? = null
+    //    var imgMat: Mat? = null
+//    var tempMat1: Mat? = null
+//    var tempMat2: Mat? = null
     var finalBitmapImage: Bitmap? = null
     var orgBitmap: Bitmap? = null
 
-    var instance: JniBitmapHolder? = null
+//    var instance: JniBitmapHolder? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,26 +56,26 @@ class SketchifyActivity : BaseActivity() {
             intent.getStringExtra(CartoonActivity.SELECTED_PHOTO)?.toUri()
         )
         orgBitmap?.let {
-            instance = JniBitmapHolder.getInstance(it)
-            object : AsyncTaskRunner<Bitmap, Bitmap?>(this) {
-                override fun doInBackground(params: Bitmap?): Bitmap? {
-                    instance?.storeBitmap()
-//                                instance?.rotateBitmapCw90()
-                    instance?.getBitmap()?.let { bmp ->
-                        return bmp
-                    }
-                    return null
-                }
-
-                override fun onPostExecute(result: Bitmap?) {
-                    result?.let { it1 ->
-                        val canvas = Canvas(result)
-                        instance?.drawBitmapOnCanvas(canvas)
-                        setImage(it1)
-                    }
-                    super.onPostExecute(result)
-                }
-            }.execute(it, true)
+//            instance = JniBitmapHolder.getInstance(it)
+//            object : AsyncTaskRunner<Bitmap, Bitmap?>(this) {
+//                override fun doInBackground(params: Bitmap?): Bitmap? {
+//                    instance?.storeBitmap()
+////                                instance?.rotateBitmapCw90()
+//                    instance?.getBitmap()?.let { bmp ->
+//                        return bmp
+//                    }
+//                    return null
+//                }
+//
+//                override fun onPostExecute(result: Bitmap?) {
+//                    result?.let { it1 ->
+//                        val canvas = Canvas(result)
+//                        instance?.drawBitmapOnCanvas(canvas)
+//                        setImage(it1)
+//                    }
+//                    super.onPostExecute(result)
+//                }
+//            }.execute(it, true)
         }
 
         binding.btnSketchifyImage.setOnClickListener {

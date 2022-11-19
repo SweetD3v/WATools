@@ -13,8 +13,8 @@ import android.widget.Toast
 import androidx.annotation.NonNull
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.FileProvider
-import com.dev4life.watools.WAToolsApp
 import com.dev4life.watools.R
+import com.dev4life.watools.WAToolsApp
 import com.dev4life.watools.databinding.ProgressDialogBinding
 import com.dev4life.watools.utils.*
 import java.io.*
@@ -167,7 +167,7 @@ class BasicImageDownloader(var ctx: Context) {
             override fun doInBackground(params: String?): String {
                 val url = URL(imgUrl)
                 val image = BitmapFactory.decodeStream(url.openConnection().getInputStream())
-                Log.e("TAG", "saveImageToExternal: ${image.width}")
+                Log.e("TAG", "saveImageToExternal: ${file.absolutePath}")
 
                 //Create Path to save Image
                 val path = file //Creates app specific folder
@@ -642,7 +642,7 @@ class BasicImageDownloader(var ctx: Context) {
                 alertDialog?.dismiss()
                 result?.let { path ->
                     Log.e("TAG", "onPostExecute: $path")
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    if (Build.VERSION.SDK_INT > Build.VERSION_CODES.Q) {
                         FileUtilsss.saveVideoAPI30(
                             ctx, imageFile, imageFile.name,
                             RootDirectoryInstaDownlaoder
@@ -658,6 +658,18 @@ class BasicImageDownloader(var ctx: Context) {
                                 Log.i("ExternalStorage", "Scanned $path1:")
                                 Log.i("ExternalStorage", "-> uri=$uri")
                             }
+                        }
+                    } else {
+                        imageFile.copyTo(File(RootDirectoryInstaDownlaoder, imageFile.name), true)
+                        MediaScannerConnection.scanFile(
+                            ctx,
+                            arrayOf(
+                                imageFile.absolutePath
+                            ),
+                            null
+                        ) { path1, uri ->
+                            Log.i("ExternalStorage", "Scanned $path1:")
+                            Log.i("ExternalStorage", "-> uri=$uri")
                         }
                     }
                 }
@@ -760,7 +772,7 @@ class BasicImageDownloader(var ctx: Context) {
                 alertDialog?.dismiss()
                 result?.let { path ->
                     Log.e("TAG", "onPostExecute: $path")
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    if (Build.VERSION.SDK_INT > Build.VERSION_CODES.Q) {
                         FileUtilsss.saveVideoAPI30(
                             ctx, imageFile, imageFile.name,
                             RootDirectoryFBDownlaoder
@@ -776,6 +788,18 @@ class BasicImageDownloader(var ctx: Context) {
                                 Log.i("ExternalStorage", "Scanned $path1:")
                                 Log.i("ExternalStorage", "-> uri=$uri")
                             }
+                        }
+                    } else {
+                        imageFile.copyTo(File(RootDirectoryFBDownlaoder, imageFile.name), true)
+                        MediaScannerConnection.scanFile(
+                            ctx,
+                            arrayOf(
+                                imageFile.absolutePath
+                            ),
+                            null
+                        ) { path1, uri ->
+                            Log.i("ExternalStorage", "Scanned $path1:")
+                            Log.i("ExternalStorage", "-> uri=$uri")
                         }
                     }
                 }

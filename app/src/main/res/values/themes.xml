@@ -52,6 +52,13 @@
         <item name="android:windowMinWidthMinor">100%</item>
     </style>
 
+    <style name="RoundedCornersDialog80" parent="@style/Theme.MaterialComponents.DayNight.Dialog">
+        <item name="dialogCornerRadius">8dp</item>
+        <item name="android:background">@drawable/rounded_bg_white_8</item>
+        <item name="android:windowMinWidthMajor">80%</item>
+        <item name="android:windowMinWidthMinor">80%</item>
+    </style>
+
     <style name="DialogAnimation">
         <item name="android:windowEnterAnimation">@anim/up_slide</item>
         <item name="android:windowExitAnimation">@anim/bottom_slide</item>

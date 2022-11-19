@@ -1,12 +1,15 @@
 package com.dev4life.watools.collage_maker.ui.fragments;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
@@ -62,15 +65,15 @@ public class PicsartCropDialogFragment extends DialogFragment implements AspectR
         super.onStart();
         Dialog dialog = getDialog();
         if (dialog != null) {
-            dialog.getWindow().setLayout(-1, -1);
-            dialog.getWindow().setBackgroundDrawable(getResources().getDrawable(R.drawable.dialog_bg));
+            dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+            dialog.getWindow().setBackgroundDrawable(getResources().getDrawable(R.drawable.dialog_bg_black));
         }
     }
 
     @Nullable
     public View onCreateView(@NonNull LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, @Nullable Bundle bundle) {
-        getDialog().getWindow().requestFeature(1);
-        getDialog().getWindow().setFlags(1024, 1024);
+        getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+        getDialog().getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         View inflate = layoutInflater.inflate(R.layout.crop_layout, viewGroup, false);
         AspectRatioPreviewAdapter aspectRatioPreviewAdapter = new AspectRatioPreviewAdapter();
         aspectRatioPreviewAdapter.setListener(this);

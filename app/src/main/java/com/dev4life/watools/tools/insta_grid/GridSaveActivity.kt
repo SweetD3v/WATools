@@ -7,9 +7,10 @@ import androidx.appcompat.app.AppCompatActivity
 import com.dev4life.watools.R
 import com.dev4life.watools.databinding.ActivityGridSaveBinding
 import com.dev4life.watools.tools.insta_grid.GridUtils.Companion.saveImageTemp
+import com.dev4life.watools.ui.activities.BaseActivity
 import com.dev4life.watools.utils.*
 
-class GridSaveActivity : AppCompatActivity() {
+class GridSaveActivity : BaseActivity() {
     val binding by lazy { ActivityGridSaveBinding.inflate(layoutInflater) }
     var bmps: Array<Bitmap?>? = null
 
@@ -69,8 +70,8 @@ class GridSaveActivity : AppCompatActivity() {
                                                     bmps.indexOf(
                                                         bmp
                                                     )
-                                                }.jpg",
-                                                "Cropped"
+                                                }",
+                                                "Insta Grid"
                                             )
                                         }
                                     }

@@ -43,7 +43,7 @@ android {
             resValue("string", "admob_app_id", "ca-app-pub-3940256099942544~3347511713")
             resValue("string", "app_open_id", "ca-app-pub-3940256099942544/3419835294")
             resValue("string", "banner_id_details", "ca-app-pub-3940256099942544/6300978111")
-            resValue("string", "interstitial_id", "ca-app-pub-3940256099942544/1033173712")
+            resValue("string", "interstitial_id", "ca-app-pub-3940256099942544/1033173712-")
             resValue("string", "admob_native_id", "ca-app-pub-3940256099942544/2247696110")
         }
         release {
@@ -141,8 +141,8 @@ dependencies {
     implementation 'com.makeramen:roundedimageview:2.3.0'
     implementation project(path: ':shapeimageview')
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.12'
-    implementation project(path: ':opencv')
-    implementation project(path: ':image_lib')
+//    implementation project(path: ':opencv')
+//    implementation project(path: ':image_lib')
     implementation project(path: ':imagepicker')
     implementation project(path: ':photofilterssdk')
 //    implementation project(path: ':rxffmpeg')

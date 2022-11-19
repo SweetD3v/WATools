@@ -63,66 +63,66 @@ var RootDirectoryWhatsappShow = File(
             + File.separator + WAToolsApp.getInstance()
         .getString(R.string.app_name) + File.separator + "Whatsapp"
 )
-public var RootDirectoryInstaDownlaoder = File(
+var RootDirectoryInstaDownlaoder = File(
     Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).absolutePath
             + File.separator + WAToolsApp.getInstance()
         .getString(R.string.app_name) + File.separator + "Insta Downloader"
 )
 
-public var RootDirectoryFunny = File(
+var RootDirectoryFunny = File(
     Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).absolutePath
             + File.separator + WAToolsApp.getInstance()
         .getString(R.string.app_name) + File.separator + "Funny Videos"
 )
 
-public var RootDirectoryFBDownlaoder = File(
+var RootDirectoryFBDownlaoder = File(
     Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).absolutePath
             + File.separator + WAToolsApp.getInstance()
         .getString(R.string.app_name) + File.separator + "FB Downloader"
 )
 
-public var RootDirectoryCompressedVideo = File(
+var RootDirectoryCompressedVideo = File(
     Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).absolutePath
             + File.separator + WAToolsApp.getInstance()
         .getString(R.string.app_name) + File.separator + "Compressed Video"
 )
 
-public var RootDirectoryCompressedPhoto = File(
+var RootDirectoryCompressedPhoto = File(
     Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).absolutePath
             + File.separator + WAToolsApp.getInstance()
         .getString(R.string.app_name) + File.separator + "Compressed Photo"
 )
 
-public var RootDirectoryCartoonified = File(
+var RootDirectoryCartoonified = File(
     Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).absolutePath
             + File.separator + WAToolsApp.getInstance()
         .getString(R.string.app_name) + File.separator + "Cartoonified"
 )
-public var RootDirectoryCollageMaker = File(
+var RootDirectoryCollageMaker = File(
     Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).absolutePath
             + File.separator + WAToolsApp.getInstance()
         .getString(R.string.app_name) + File.separator + "Collage Maker"
 )
 
-public var RootDirectoryPhotoEditor = File(
+var RootDirectoryPhotoEditor = File(
     Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).absolutePath
             + File.separator + WAToolsApp.getInstance()
         .getString(R.string.app_name) + File.separator + "Photo Editor"
 )
 
-public var RootDirectorySketchified = File(
+var RootDirectorySketchified = File(
     Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).absolutePath
             + File.separator + WAToolsApp.getInstance()
         .getString(R.string.app_name) + File.separator + "Skecthified"
 )
 
-public var RootDirectoryPhotoFilter = File(
+var RootDirectoryPhotoFilter = File(
     Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).absolutePath
             + File.separator + WAToolsApp.getInstance()
         .getString(R.string.app_name) + File.separator + "PhotoFilter"
 )
 
-public var RootDirectoryPhotoWarp = File(
+var RootDirectoryPhotoWarp = File(
     Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).absolutePath
             + File.separator + WAToolsApp.getInstance()
         .getString(R.string.app_name) + File.separator + "PhotoWarp"
@@ -375,6 +375,7 @@ fun getMedia(ctx: Context, file: File, block: (MutableList<Media>) -> Unit) {
                 return mediaList
             } else {
                 if (file.exists()) {
+                    itemsFiles = mutableListOf()
                     return getMediaQMinus(ctx, file).reversed().toMutableList()
                 }
             }
@@ -386,6 +387,7 @@ fun getMedia(ctx: Context, file: File, block: (MutableList<Media>) -> Unit) {
 
             result?.let { list ->
                 mediaListFinal = list
+                mediaListFinal.sortByDescending { it.date }
                 Log.e("TAG", "doInBackground: ${mediaListFinal}")
                 block(mediaListFinal)
             }
@@ -446,6 +448,7 @@ fun getMedia(ctx: Context, block: (MutableList<Media>) -> Unit) {
                     mediaList.sortByDescending { it.date }
                     return mediaList
                 } else {
+                    itemsFiles = mutableListOf()
                     return getMediaQMinus(ctx).reversed().toMutableList()
                 }
             }
@@ -457,6 +460,7 @@ fun getMedia(ctx: Context, block: (MutableList<Media>) -> Unit) {
 
             result?.let { list ->
                 mediaListFinal = list
+                mediaListFinal.sortByDescending { it.date }
                 Log.e("TAG", "doInBackground: ${mediaListFinal}")
                 block(mediaListFinal)
             }
@@ -504,6 +508,7 @@ fun getMediaByName(ctx: Context, dirName: File, block: (MutableList<Media>) -> U
                             val pathId = cursor.getString(imageCol)
                             val uri = Uri.parse(pathId)
                             var contentUri: Uri
+
                             contentUri = if (uri.toString().endsWith(".mp4")) {
                                 ContentUris.withAppendedId(
                                     MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
@@ -531,6 +536,7 @@ fun getMediaByName(ctx: Context, dirName: File, block: (MutableList<Media>) -> U
                     mediaList.sortByDescending { it.date }
                     return mediaList
                 } else {
+                    itemsFiles = mutableListOf()
                     return getMediaQMinus(ctx, dirName).reversed().toMutableList()
                 }
             }
@@ -542,6 +548,7 @@ fun getMediaByName(ctx: Context, dirName: File, block: (MutableList<Media>) -> U
 
             result?.let { list ->
                 mediaListFinal = list
+                mediaListFinal.sortByDescending { it.date }
                 Log.e("TAG", "doInBackground: ${mediaListFinal}")
                 block(mediaListFinal)
             }
@@ -549,26 +556,79 @@ fun getMediaByName(ctx: Context, dirName: File, block: (MutableList<Media>) -> U
     }.execute(dirName.name, false)
 }
 
+var itemsFiles = mutableListOf<Media>()
+
 fun getMediaQMinus(ctx: Context): MutableList<Media> {
-    val items = mutableListOf<Media>()
+    val files = originalPath.listFiles()
 
-    originalPath.listFiles()?.forEach {
+    if (files != null) {
         val authority = ctx.packageName + ".provider"
-        val mediaUri = FileProvider.getUriForFile(ctx, authority, it)
-        items.add(Media(mediaUri, it.absolutePath, it.extension == "mp4", it.lastModified()))
-    }
+        for (fileItem in files) {
+            val mediaUri = FileProvider.getUriForFile(ctx, authority, fileItem)
+            if (fileItem.isFile && fileItem.exists()) {
+                val mid = fileItem.name.lastIndexOf(".")
+                val ext = fileItem.name.substring(mid + 1, fileItem.name.length)
 
-    return items
+                if (ext.equals("jpg", true)
+                    || ext.equals("png", true)
+                    || ext.equals("jpeg", true)
+                    || ext.equals("gif", true)
+                ) {
+                    itemsFiles.add(
+                        Media(
+                            mediaUri,
+                            fileItem.absolutePath,
+                            ctx.contentResolver.getType(mediaUri)?.contains("video", true) == true,
+                            fileItem.lastModified()
+                        )
+                    )
+                }
+            } else {
+                getMediaQMinus(ctx, fileItem)
+            }
+        }
+    }
+    return itemsFiles
 }
 
 fun getMediaQMinus(ctx: Context, file: File): MutableList<Media> {
-    val items = mutableListOf<Media>()
+    val files = file.listFiles()
+
+    if (files != null) {
+        val authority = ctx.packageName + ".provider"
+        for (fileItem in files) {
+            val mediaUri = FileProvider.getUriForFile(ctx, authority, fileItem)
+            if (fileItem.isFile && fileItem.exists()) {
+                val mid = fileItem.name.lastIndexOf(".")
+                val ext = fileItem.name.substring(mid + 1, fileItem.name.length)
+
+                if (!ext.equals(".noMedia", true)
+                ) {
+                    itemsFiles.add(
+                        Media(
+                            mediaUri,
+                            fileItem.absolutePath,
+                            ctx.contentResolver.getType(mediaUri)?.contains("video", true) == true,
+                            fileItem.lastModified()
+                        )
+                    )
+                }
+            } else {
+                getMediaQMinus(ctx, fileItem)
+            }
+        }
+    }
+    return itemsFiles
+}
+
+fun getMediaQMinusWA(ctx: Context, file: File): MutableList<Media> {
+    itemsFiles = mutableListOf()
 
     file.listFiles()?.forEach {
         val authority = ctx.packageName + ".provider"
         val mediaUri = FileProvider.getUriForFile(ctx, authority, it)
-        if (!it.absolutePath.contains(".noMedia", true)) {
-            items.add(
+        if (it.exists() && !it.path.contains(".noMedia", true))
+            itemsFiles.add(
                 Media(
                     mediaUri,
                     it.absolutePath,
@@ -576,10 +636,9 @@ fun getMediaQMinus(ctx: Context, file: File): MutableList<Media> {
                     it.lastModified()
                 )
             )
-        }
     }
 
-    return items
+    return itemsFiles
 }
 
 fun shareMediaUri(
@@ -655,11 +714,11 @@ fun getMediaWA(ctx: Context, block: (MutableList<Media>) -> Unit) {
                 }
             } else {
                 if (AppUtils.STATUS_DIRECTORY.exists()) {
-                    val imagesListNew = getMediaQMinus(ctx, AppUtils.STATUS_DIRECTORY)
+                    val imagesListNew = getMediaQMinusWA(ctx, AppUtils.STATUS_DIRECTORY)
                     for (media in imagesListNew) {
-                        if (!media.isVideo) {
-                            mediaListFinal.add(media)
-                        }
+//                        if (!media.isVideo) {
+                        mediaListFinal.add(media)
+//                        }
                     }
                 }
             }
@@ -725,11 +784,11 @@ fun getMediaWAWB(ctx: Context, block: (MutableList<Media>) -> Unit) {
                 }
             } else {
                 if (AppUtils.STATUS_DIRECTORY.exists()) {
-                    val imagesListNew = getMediaQMinus(ctx, AppUtils.STATUS_DIRECTORY)
+                    val imagesListNew = getMediaQMinusWA(ctx, AppUtils.STATUS_DIRECTORY)
                     for (media in imagesListNew) {
-                        if (!media.isVideo) {
-                            mediaListFinal.add(media)
-                        }
+//                        if (!media.isVideo) {
+                        mediaListFinal.add(media)
+//                        }
                     }
                 }
             }

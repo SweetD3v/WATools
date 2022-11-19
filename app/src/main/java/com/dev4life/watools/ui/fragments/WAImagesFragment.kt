@@ -78,6 +78,8 @@ class WAImagesFragment : BaseFragment<FragmentWaimagesBinding>(), WATypeChangeLi
     override fun onResume() {
         super.onResume()
 
+        Log.e("TAG", "onResumeStatus: ")
+
 //        if (allPermissionsGranted()) {
 //            onPermissionGranted()
 //        } else {
@@ -94,7 +96,6 @@ class WAImagesFragment : BaseFragment<FragmentWaimagesBinding>(), WATypeChangeLi
     }
 
     private fun loadImages() {
-        Log.e("TAG", "loadImages: ")
         binding.apply {
             val imageListNew = mutableListOf<Media>()
             getMediaWA(ctx) { list ->
@@ -103,9 +104,8 @@ class WAImagesFragment : BaseFragment<FragmentWaimagesBinding>(), WATypeChangeLi
 //                    ) {
                     imageListNew.add(media)
 //                    }
+                    Log.e("TAG", "loadImagesWA: ${media.path}")
                 }
-                Log.e("TAG", "loadImagesNew: ${imageListNew.size}")
-                Log.e("TAG", "loadImages: ${imagesList.size}")
                 if (imageListNew.size != imagesList.size) {
                     imagesList = imageListNew
                     val waMediaAdapter = WAMediaAdapter(ctx, imagesList, binding.rlMain)
