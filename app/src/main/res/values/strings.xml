@@ -144,4 +144,27 @@
         <item>https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEikPbxRyrLX261Px0p6UQ1XwU_o6suN8r2d9HhkQWpNGkSxOorXe0UlCZYce81mhI4RVmHAH8GB3RULXik2jhEutWnZqpoLzUetKacXObZ7M2m7ZYJEVWA2C0EfZ0Fe8lgksjsMQce9dCuW__8R7UFNVtWQK-EgrMAoO_j3RrGKa6S4uq8-04VXjWcQ/s320/2.png</item>
         <item>https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjEXHuvdM-gMZvjmtpf0fRXewEz5XfXqyrGk5_oi1Wj-fSDNC8IZ9gSvdfRFCGf7TSF6IC6o9QiW6K2mf9z_MdXpz1WprR-Ll52P3BMOxH3RidamT5y3WIM8o1lgfF_BG3A0-Otlg5GidVHswS9g9PNUoJdPGDdCjuW1A3Zyu0uU_FN2vqWUEjvagiu/s320/1.png</item>
     </string-array>
+
+    <string name="config_config">Config</string>
+    <string name="config_start">Start</string>
+    <string name="config_stop">Stop</string>
+    <string name="config_restart">Restart</string>
+    <string name="config_debug_mode">Debug Mode</string>
+    <string name="config_text_size">TextSize</string>
+    <string name="config_auto_start_on_boot">Auto start on boot</string>
+    <string name="config_hide_when_in_fullscreen">Hide when in fullscreen</string>
+    <string name="config_interval">Interval</string>
+    <string name="config_pos">X Position</string>
+    <string name="config_bar_max_kb">Max Speed[KB](Bar)</string>
+    <string name="config_unit_type">Unit Type</string>
+    <string name="config_logarithm_bar">Logarithm bar</string>
+    <string name="config_interpolate">Interpolate(notice battery life)</string>
+
+    <string name="preview">Preview</string>
+    <string name="resident_service_running">DataStats service running</string>
+
+    <string name="hide">Hide</string>
+    <string name="show">Show</string>
+    <string name="close_temporarily_resume_after_10_seconds">Close temporarily. Resume after 10 seconds.</string>
+    <string name="resident_notification">Resident</string>
 </resources>
