@@ -8,8 +8,8 @@ import android.util.Log
 import com.dev4life.watools.databinding.ActivityMainBinding
 import com.dev4life.watools.phone_booster.app_utils.batteryPerms
 import com.dev4life.watools.phone_booster.app_utils.getAllAppsPermissions
-import com.dev4life.watools.speedmeter.SpeedMeterService
 import com.google.android.material.snackbar.Snackbar
+import com.internet.speed_meter.SpeedMeterService
 
 class MainActivity : BaseActivity() {
     val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }

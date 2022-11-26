@@ -22,7 +22,7 @@ import androidx.annotation.Nullable;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
-public class EntryActivity extends BaseActivity {
+public class WAStickersActivity extends BaseActivity {
     private View progressBar;
     private LoadListAsyncTask loadListAsyncTask;
 
@@ -73,9 +73,9 @@ public class EntryActivity extends BaseActivity {
     }
 
     static class LoadListAsyncTask extends AsyncTask<Void, Void, Pair<String, ArrayList<StickerPack>>> {
-        private final WeakReference<EntryActivity> contextWeakReference;
+        private final WeakReference<WAStickersActivity> contextWeakReference;
 
-        LoadListAsyncTask(EntryActivity activity) {
+        LoadListAsyncTask(WAStickersActivity activity) {
             this.contextWeakReference = new WeakReference<>(activity);
         }
 
@@ -105,12 +105,12 @@ public class EntryActivity extends BaseActivity {
         @Override
         protected void onPostExecute(Pair<String, ArrayList<StickerPack>> stringListPair) {
 
-            final EntryActivity entryActivity = contextWeakReference.get();
-            if (entryActivity != null) {
+            final WAStickersActivity WAStickersActivity = contextWeakReference.get();
+            if (WAStickersActivity != null) {
                 if (stringListPair.first != null) {
-                    entryActivity.showErrorMessage(stringListPair.first);
+                    WAStickersActivity.showErrorMessage(stringListPair.first);
                 } else {
-                    entryActivity.showStickerPack(stringListPair.second);
+                    WAStickersActivity.showStickerPack(stringListPair.second);
                 }
             }
         }

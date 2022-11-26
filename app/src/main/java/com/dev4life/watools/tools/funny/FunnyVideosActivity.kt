@@ -50,7 +50,7 @@ class FunnyVideosActivity : AppCompatActivity() {
                 loadsImagesAutomatically = true
                 domStorageEnabled = true
 
-                setAppCacheEnabled(true)
+                cacheMode = WebSettings.LOAD_CACHE_ELSE_NETWORK
                 layoutAlgorithm = WebSettings.LayoutAlgorithm.NORMAL
                 domStorageEnabled = true
                 mediaPlaybackRequiresUserGesture = false

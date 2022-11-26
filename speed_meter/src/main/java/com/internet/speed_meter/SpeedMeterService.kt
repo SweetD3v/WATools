@@ -1,4 +1,4 @@
-package com.dev4life.watools.speedmeter
+package com.internet.speed_meter
 
 import android.app.*
 import android.content.Context
@@ -7,15 +7,11 @@ import android.graphics.Color
 import android.graphics.drawable.Icon
 import android.os.Build
 import android.os.IBinder
-import android.util.Log
 import android.widget.RemoteViews
 import androidx.annotation.RequiresApi
-import com.dev4life.watools.R
-import com.dev4life.watools.ui.activities.MainActivity
 import java.util.*
 
 class SpeedMeterService : Service() {
-
     private val timer by lazy { Timer() }
     private val NOTIFICATION_ID = 1
     private val CHANNEL_ID = "traffic_service"
@@ -30,10 +26,19 @@ class SpeedMeterService : Service() {
     private val notificationManager by lazy {
         getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
     }
+
     private val builder by lazy {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             Notification.Builder(this, CHANNEL_ID)
-                .setSmallIcon(Icon.createWithBitmap(ImageUtils.createBitmapFromString(this, "0", "KB")))
+                .setSmallIcon(
+                    Icon.createWithBitmap(
+                        ImageUtils.createBitmapFromString(
+                            this,
+                            "0",
+                            "KB"
+                        )
+                    )
+                )
                 .setVisibility(Notification.VISIBILITY_PUBLIC)
                 .setOngoing(false)
                 .setAutoCancel(true)
@@ -48,12 +53,14 @@ class SpeedMeterService : Service() {
         }
     }
 
-    override fun onBind(intent: Intent?): IBinder? {
+    override
+    fun onBind(intent: Intent?): IBinder? {
         return null
     }
 
     override fun onCreate() {
         super.onCreate()
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             createNotificationChannel(CHANNEL_ID, "Traffic Status Service")
         }
@@ -104,7 +111,8 @@ class SpeedMeterService : Service() {
     }
 
     private fun createPendingIntent(): PendingIntent? {
-        val intent = Intent(this, MainActivity::class.java)
+        val intent =
+            Intent(this, Class.forName("com.dev4life.watools.ui.activities.MainActivity"))
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
 
         return PendingIntent.getActivity(

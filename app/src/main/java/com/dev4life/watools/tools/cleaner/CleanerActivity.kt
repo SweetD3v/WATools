@@ -34,34 +34,34 @@ class CleanerActivity : BaseActivity() {
                     txtTotalCacheSize.animate().scaleX(0f).scaleY(0f).apply {
                         duration = 500
                         setListener(object : Animator.AnimatorListener {
-                            override fun onAnimationStart(p0: Animator?) {
+                            override fun onAnimationStart(p0: Animator) {
                             }
 
-                            override fun onAnimationEnd(p0: Animator?) {
+                            override fun onAnimationEnd(p0: Animator) {
                                 txtTotalCacheSize.text = "Cache cleaned"
                             }
 
-                            override fun onAnimationCancel(p0: Animator?) {
+                            override fun onAnimationCancel(p0: Animator) {
                             }
 
-                            override fun onAnimationRepeat(p0: Animator?) {
+                            override fun onAnimationRepeat(p0: Animator) {
                             }
                         })
                     }
                     txtTotalPercentage.animate().scaleX(0f).scaleY(0f).apply {
                         duration = 500
                         setListener(object : Animator.AnimatorListener {
-                            override fun onAnimationStart(p0: Animator?) {
+                            override fun onAnimationStart(p0: Animator) {
                             }
 
-                            override fun onAnimationEnd(p0: Animator?) {
+                            override fun onAnimationEnd(p0: Animator) {
                                 txtTotalPercentage.text = "0 B"
                             }
 
-                            override fun onAnimationCancel(p0: Animator?) {
+                            override fun onAnimationCancel(p0: Animator) {
                             }
 
-                            override fun onAnimationRepeat(p0: Animator?) {
+                            override fun onAnimationRepeat(p0: Animator) {
                             }
                         })
                     }
@@ -109,36 +109,36 @@ class CleanerActivity : BaseActivity() {
                                 txtTotalPercentage.animate().scaleX(0f).scaleY(0f).apply {
                                     duration = 500
                                     setListener(object : Animator.AnimatorListener {
-                                        override fun onAnimationStart(p0: Animator?) {
+                                        override fun onAnimationStart(p0: Animator) {
                                         }
 
-                                        override fun onAnimationEnd(p0: Animator?) {
+                                        override fun onAnimationEnd(p0: Animator) {
                                             txtTotalPercentage.text = size
                                         }
 
-                                        override fun onAnimationCancel(p0: Animator?) {
+                                        override fun onAnimationCancel(p0: Animator) {
                                         }
 
-                                        override fun onAnimationRepeat(p0: Animator?) {
+                                        override fun onAnimationRepeat(p0: Animator) {
                                         }
                                     })
                                 }
                                 txtTotalCacheSize.animate().scaleX(0f).scaleY(0f).apply {
                                     duration = 500
                                     setListener(object : Animator.AnimatorListener {
-                                        override fun onAnimationStart(p0: Animator?) {
+                                        override fun onAnimationStart(p0: Animator) {
                                         }
 
-                                        override fun onAnimationEnd(p0: Animator?) {
+                                        override fun onAnimationEnd(p0: Animator) {
                                             txtTotalCacheSize.text = "Cache size"
                                             btnCleanCache.text = "Clean"
                                             btnCleanCache.isEnabled = true
                                         }
 
-                                        override fun onAnimationCancel(p0: Animator?) {
+                                        override fun onAnimationCancel(p0: Animator) {
                                         }
 
-                                        override fun onAnimationRepeat(p0: Animator?) {
+                                        override fun onAnimationRepeat(p0: Animator) {
                                         }
                                     })
                                 }

@@ -1,4 +1,4 @@
-package com.dev4life.watools.speedmeter
+package com.internet.speed_meter
 
 import android.content.Context
 import android.net.TrafficStats
@@ -46,7 +46,7 @@ class TrafficUtils {
             downloadSpeedOutput = if (units != " KB" && mDownloadSpeedWithDecimals < 100) {
                 String.format(Locale.US, "%.1f", mDownloadSpeedWithDecimals)
             } else {
-                Integer.toString(mDownloadSpeedWithDecimals.toInt())
+                mDownloadSpeedWithDecimals.toInt().toString()
             }
 
             return (downloadSpeedOutput + units)
@@ -54,34 +54,38 @@ class TrafficUtils {
         }
 
         fun convertToBytes(value: Float, unit: String): Long {
-            if (unit == "KB") {
-                return (value.toLong()) * KB
-            } else if (unit == "MB") {
-                return (value.toLong()) * MB
-            } else if (unit == "GB") {
-                return (value.toLong()) * GB
+            when (unit) {
+                "KB" -> {
+                    return (value.toLong()) * KB
+                }
+                "MB" -> {
+                    return (value.toLong()) * MB
+                }
+                "GB" -> {
+                    return (value.toLong()) * GB
+                }
+                else -> return 0
             }
-            return 0
         }
 
         fun isWifiConnected(context: Context): Boolean {
             val wifiMgr =
                 context.applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager?
 
-            if (wifiMgr!!.isWifiEnabled) { // Wi-Fi adapter is ON
+            return if (wifiMgr!!.isWifiEnabled) { // Wi-Fi adapter is ON
 
                 val wifiInfo = wifiMgr.connectionInfo
 
-                return wifiInfo.networkId != -1
+                wifiInfo.networkId != -1
 
             } else {
-                return false // Wi-Fi adapter is OFF
+                false // Wi-Fi adapter is OFF
             }
         }
 
         fun getMetricData(bytes: Long): String {
-            var dataWithDecimals: Float
-            var units: String
+            val dataWithDecimals: Float
+            val units: String
             if (bytes >= GB) {
                 dataWithDecimals = bytes.toFloat() / GB.toFloat()
                 units = " GB"
@@ -95,10 +99,10 @@ class TrafficUtils {
             }
 
 
-            var output = if (units != " KB" && dataWithDecimals < 100) {
+            val output = if (units != " KB" && dataWithDecimals < 100) {
                 String.format(Locale.US, "%.1f", dataWithDecimals)
             } else {
-                Integer.toString(dataWithDecimals.toInt())
+                dataWithDecimals.toInt().toString()
             }
 
             return output + units

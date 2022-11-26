@@ -1,4 +1,4 @@
-package com.dev4life.watools.speedmeter
+package com.internet.speed_meter
 
 import android.content.Context
 import android.graphics.*

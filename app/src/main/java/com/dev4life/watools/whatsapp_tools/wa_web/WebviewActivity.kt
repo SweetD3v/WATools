@@ -133,7 +133,6 @@ open class WebviewActivity : AppCompatActivity(), NavigationView.OnNavigationIte
         binding.appBarMain.contentMain.webview.settings.domStorageEnabled =
             true //for html5 app
         binding.appBarMain.contentMain.webview.settings.databaseEnabled = true
-        binding.appBarMain.contentMain.webview.settings.setAppCacheEnabled(false) // deprecated
         binding.appBarMain.contentMain.webview.settings.cacheMode = WebSettings.LOAD_DEFAULT
         binding.appBarMain.contentMain.webview.settings.loadWithOverviewMode = true
         binding.appBarMain.contentMain.webview.settings.useWideViewPort = true

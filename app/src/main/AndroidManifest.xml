@@ -53,18 +53,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
+        android:enableOnBackInvokedCallback="true"
         tools:replace="android:icon"
         tools:targetApi="31">
-
-        <service
-            android:name=".speedmeter.SpeedMeterService"
-            android:enabled="true"
-            android:exported="false" />
-
-        <activity
-            android:name=".speedtest_new.SpeedTestActivityNew"
-            android:exported="false"
-            android:screenOrientation="portrait" />
 
         <activity
             android:name=".speedtest.SpeedTestActivity"

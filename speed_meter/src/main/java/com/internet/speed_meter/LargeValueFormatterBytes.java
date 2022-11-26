@@ -1,4 +1,4 @@
-package com.dev4life.watools.speedmeter;
+package com.internet.speed_meter;
 
 import com.github.mikephil.charting.formatter.ValueFormatter;
 
