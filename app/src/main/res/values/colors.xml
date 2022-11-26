@@ -50,4 +50,7 @@
     <color name="downloadBackgroundStart">#cc4444bb</color>
     <color name="downloadBackgroundEnd">#cc7777cc</color>
     <color name="downloadBorder">#ff555555</color>
+    <color name="cp_4">#a5dee5</color>
+    <color name="cp_0">#30E3CA</color>
+    <color name="cp_1">#ffcfdf</color>
 </resources>

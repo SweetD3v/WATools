@@ -78,7 +78,7 @@ class SpeedMeterService : Service() {
         )).toString()
 
         val toBytes = TrafficUtils.convertToBytes(speed.toFloat(), units)
-        Log.e("TAG", "showInternetSpeed: $toBytes")
+//        Log.e("TAG", "showInternetSpeed: $toBytes")
     }
 
     private fun updateNotification(downloadSpeed: String) {

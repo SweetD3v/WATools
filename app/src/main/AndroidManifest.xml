@@ -62,6 +62,16 @@
             android:exported="false" />
 
         <activity
+            android:name=".speedtest_new.SpeedTestActivityNew"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".speedtest.SpeedTestActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name=".ui.activities.EmptySendActivity"
             android:exported="false"
             android:screenOrientation="portrait" />

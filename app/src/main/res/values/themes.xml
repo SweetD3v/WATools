@@ -12,14 +12,38 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="LabelTextStyle">
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:textColor">@color/cp_1</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">@font/roboto_regular</item>
+    </style>
+
+    <style name="UnitTextStyle">
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:textColor">@color/cp_1</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">@font/roboto_regular</item>
+
+    </style>
+
+    <style name="ValueTextStyle">
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:textColor">@color/cp_1</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+    </style>
+
     <style name="BaseBottomSheetDialog" parent="@style/Theme.MaterialComponents.Light.BottomSheetDialog">
         <item name="android:windowIsFloating">false</item>
         <item name="android:backgroundDimEnabled">true</item>
         <item name="bottomSheetStyle">@style/BottomSheet</item>
     </style>
+
     <style name="BottomSheet">
         <item name="android:background">@android:color/transparent</item>
     </style>
+
     <style name="BottomSheetDialogTheme" parent="@style/BaseBottomSheetDialog">
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@color/white</item>

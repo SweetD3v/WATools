@@ -4,7 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import com.dev4life.watools.databinding.ActivityMainBinding
+import com.dev4life.watools.phone_booster.app_utils.batteryPerms
+import com.dev4life.watools.phone_booster.app_utils.getAllAppsPermissions
 import com.dev4life.watools.speedmeter.SpeedMeterService
 import com.google.android.material.snackbar.Snackbar
 
@@ -18,6 +21,20 @@ class MainActivity : BaseActivity() {
         val speedMeterIntent =
             Intent(this@MainActivity, SpeedMeterService::class.java)
         startService(speedMeterIntent)
+
+        var permissions = getAllAppsPermissions(this)
+        permissions = ArrayList(permissions.filter {
+            it.permissions.contains(batteryPerms[0])
+                    || it.permissions.contains(batteryPerms[1])
+                    || it.permissions.contains(batteryPerms[2])
+                    || it.permissions.contains(batteryPerms[3])
+        })
+        for (permission in permissions) {
+            Log.e(
+                "TAGApp",
+                "App Name : ${permission.appName} -> Is Sensitive: ${permission.isSensitive}"
+            )
+        }
     }
 
     var doubleBackToExitPressedOnce = false
