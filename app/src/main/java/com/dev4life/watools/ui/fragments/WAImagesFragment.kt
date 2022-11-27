@@ -12,32 +12,25 @@ import com.dev4life.watools.databinding.FragmentWaimagesBinding
 import com.dev4life.watools.interfaces.WATypeChangeListener
 import com.dev4life.watools.models.Media
 import com.dev4life.watools.utils.addOuterGridSpacing
-import com.dev4life.watools.utils.getMediaWA
-import com.dev4life.watools.utils.getMediaWAWB
+import com.dev4life.watools.utils.getMediaWACoroutine
+import com.dev4life.watools.utils.getMediaWAWBCoroutine
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 class WAImagesFragment : BaseFragment<FragmentWaimagesBinding>(), WATypeChangeListener {
     override fun getLayout(): FragmentWaimagesBinding {
         return FragmentWaimagesBinding.inflate(layoutInflater)
     }
 
-    var imagesList: MutableList<Media> = mutableListOf()
     var decorationAdded: Boolean? = false
     var waTypeChangeListener: WATypeChangeListener? = null
     var waType = 0
 
-    companion object {
-        fun newInstance(): WAImagesFragment {
-            val fragment = WAImagesFragment()
-            fragment.waTypeChangeListener = fragment
-            return fragment
-        }
-
-        fun newInstance(waTypeChangeListener: WATypeChangeListener): WAImagesFragment {
-            val fragment = WAImagesFragment()
-            fragment.waTypeChangeListener = waTypeChangeListener
-            return fragment
-        }
-    }
+    var job = Job()
+    var ioScope = CoroutineScope(Dispatchers.IO + job)
+    var uiScope = CoroutineScope(Dispatchers.Main + job)
 
     override fun onTypeChanged(type: Int) {
         waType = type
@@ -98,47 +91,83 @@ class WAImagesFragment : BaseFragment<FragmentWaimagesBinding>(), WATypeChangeLi
     private fun loadImages() {
         binding.apply {
             val imageListNew = mutableListOf<Media>()
-            getMediaWA(ctx) { list ->
-                for (media in list) {
-//                    if (!media.isVideo and !media.uri.toString().contains(".nomedia", true)
-//                    ) {
-                    imageListNew.add(media)
-//                    }
-                    Log.e("TAG", "loadImagesWA: ${media.path}")
-                }
-                if (imageListNew.size != imagesList.size) {
-                    imagesList = imageListNew
-                    val waMediaAdapter = WAMediaAdapter(ctx, imagesList, binding.rlMain)
-                    binding.rvWAImages.adapter = waMediaAdapter
-                    waMediaAdapter.notifyItemRangeChanged(0, imagesList.size)
+
+            job = Job()
+            ioScope = CoroutineScope(Dispatchers.IO + job)
+            uiScope = CoroutineScope(Dispatchers.Main + job)
+
+            ioScope.launch {
+                getMediaWACoroutine(ctx) { list ->
+                    for (media in list) {
+                        if (!media.path.contains(".nomedia", true)
+                        ) {
+                            imageListNew.add(media)
+                        }
+                        Log.e("TAG", "loadImagesWA: ${media.path}")
+                    }
+                    uiScope.launch {
+                        imagesList = imageListNew
+                        uiScope.launch {
+                            val waMediaAdapter = WAMediaAdapter(ctx, imagesList)
+                            binding.rvWAImages.adapter = waMediaAdapter
+                            waMediaAdapter.notifyItemRangeChanged(0, imagesList.size)
+                        }
+                    }
                 }
             }
         }
     }
 
     private fun loadImagesWB() {
-        Log.e("TAG", "loadImages: ")
         binding.apply {
             val imageListNew = mutableListOf<Media>()
-            getMediaWAWB(ctx) { list ->
-                for (media in list) {
-//                    if (!media.isVideo and !media.uri.toString().contains(".nomedia", true)
-//                    ) {
-                    imageListNew.add(media)
-//                    }
-                }
-                Log.e("TAG", "loadImagesNew: ${imageListNew.size}")
-                Log.e("TAG", "loadImages: ${imagesList.size}")
-                if (imageListNew.size != imagesList.size) {
-                    imagesList = imageListNew
-                    val waMediaAdapter = WAMediaAdapter(ctx, imagesList, binding.rlMain)
-                    binding.rvWAImages.adapter = waMediaAdapter
-                    waMediaAdapter.notifyItemRangeChanged(0, imagesList.size)
+
+            job = Job()
+            ioScope = CoroutineScope(Dispatchers.IO + job)
+            uiScope = CoroutineScope(Dispatchers.Main + job)
+
+            ioScope.launch {
+                getMediaWAWBCoroutine(ctx) { list ->
+                    for (media in list) {
+                        if (!media.path.contains(".nomedia", true)
+                        ) {
+                            imageListNew.add(media)
+                        }
+                        Log.e("TAG", "loadImagesWA: ${media.path}")
+                    }
+                    uiScope.launch {
+                        imagesList = imageListNew
+                        uiScope.launch {
+                            val waMediaAdapter = WAMediaAdapter(ctx, imagesList)
+                            binding.rvWAImages.adapter = waMediaAdapter
+                            waMediaAdapter.notifyItemRangeChanged(0, imagesList.size)
+                        }
+                    }
                 }
             }
         }
     }
 
     override fun onBackPressed() {
+    }
+
+    companion object {
+        var imagesList: MutableList<Media> = mutableListOf()
+        fun newInstance(): WAImagesFragment {
+            val fragment = WAImagesFragment()
+            fragment.waTypeChangeListener = fragment
+            return fragment
+        }
+
+        fun newInstance(waTypeChangeListener: WATypeChangeListener): WAImagesFragment {
+            val fragment = WAImagesFragment()
+            fragment.waTypeChangeListener = waTypeChangeListener
+            return fragment
+        }
+    }
+
+    override fun onDestroy() {
+        job.cancel()
+        super.onDestroy()
     }
 }

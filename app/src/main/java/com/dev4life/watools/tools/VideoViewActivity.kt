@@ -13,6 +13,8 @@ class VideoViewActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.apply {
+            back.setOnClickListener { onBackPressed() }
+
             videoView.setVideoURI(intent.getStringExtra("path").toString().toUri())
             videoView.setMediaController(mediaController)
             videoView.start()
@@ -26,6 +28,5 @@ class VideoViewActivity : AppCompatActivity() {
             }
         }
         finish()
-        super.onBackPressed()
     }
 }

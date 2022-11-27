@@ -100,20 +100,18 @@ class BasicImageDownloader(var ctx: Context) {
         val dirName = WAToolsApp.getInstance().getExternalFilesDir("insta")!!
         if (!dirName.exists())
             dirName.mkdirs()
+        var displayName: String = ""
+        displayName = "IMG_${System.currentTimeMillis()}"
+        val path = dirName
+        path.mkdirs()
+        val imageFile = File(path, "$displayName.png") // Imagename.png
         object : AsyncTaskRunner<String, Bitmap>(ctx) {
-            var displayName: String = ""
-
             override fun doInBackground(params: String?): Bitmap? {
                 val url = URL(imgUrl)
                 val connection = url.openConnection()
                 val image = BitmapFactory.decodeStream(connection.getInputStream())
                 Log.e("TAG", "saveImageToExternal: ${image.width}")
 
-                //Create Path to save Image
-                val path = dirName //Creates app specific folder
-                path.mkdirs()
-                displayName = "IMG_${System.currentTimeMillis()}"
-                val imageFile = File(path, "$displayName.png") // Imagename.png
                 val out = FileOutputStream(imageFile)
                 if (!imageFile.exists())
                     imageFile.createNewFile()
@@ -138,7 +136,7 @@ class BasicImageDownloader(var ctx: Context) {
                         Toast.makeText(ctx, "Photo saved!", Toast.LENGTH_SHORT).show()
                         MediaScannerConnection.scanFile(
                             ctx,
-                            arrayOf(it),
+                            arrayOf(File(RootDirectoryInstaDownlaoder, imageFile.name).absolutePath),
                             null
                         ) { path, uri ->
                             Log.i("ExternalStorage", "Scanned $path:")
@@ -641,7 +639,6 @@ class BasicImageDownloader(var ctx: Context) {
                 super.onPostExecute(result)
                 alertDialog?.dismiss()
                 result?.let { path ->
-                    Log.e("TAG", "onPostExecute: $path")
                     if (Build.VERSION.SDK_INT > Build.VERSION_CODES.Q) {
                         FileUtilsss.saveVideoAPI30(
                             ctx, imageFile, imageFile.name,
@@ -660,11 +657,12 @@ class BasicImageDownloader(var ctx: Context) {
                             }
                         }
                     } else {
+//                        FileUtilsss.copy(imageFile, File(RootDirectoryInstaDownlaoder, imageFile.name))
                         imageFile.copyTo(File(RootDirectoryInstaDownlaoder, imageFile.name), true)
                         MediaScannerConnection.scanFile(
                             ctx,
                             arrayOf(
-                                imageFile.absolutePath
+                                File(RootDirectoryInstaDownlaoder, imageFile.name).absolutePath
                             ),
                             null
                         ) { path1, uri ->

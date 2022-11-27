@@ -1,10 +1,15 @@
 package com.dev4life.watools.ui.activities
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import com.dev4life.watools.databinding.ActivityMainBinding
 import com.dev4life.watools.phone_booster.app_utils.batteryPerms
 import com.dev4life.watools.phone_booster.app_utils.getAllAppsPermissions
@@ -14,13 +19,34 @@ import com.internet.speed_meter.SpeedMeterService
 class MainActivity : BaseActivity() {
     val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
+    val notificationPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
+            if (granted) {
+                val speedMeterIntent =
+                    Intent(this@MainActivity, SpeedMeterService::class.java)
+                startService(speedMeterIntent)
+            }
+        }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        val speedMeterIntent =
-            Intent(this@MainActivity, SpeedMeterService::class.java)
-        startService(speedMeterIntent)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
+                != PackageManager.PERMISSION_GRANTED
+            ) {
+                notificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+            } else {
+                val speedMeterIntent =
+                    Intent(this@MainActivity, SpeedMeterService::class.java)
+                startService(speedMeterIntent)
+            }
+        } else {
+            val speedMeterIntent =
+                Intent(this@MainActivity, SpeedMeterService::class.java)
+            startService(speedMeterIntent)
+        }
 
         var permissions = getAllAppsPermissions(this)
         permissions = ArrayList(permissions.filter {

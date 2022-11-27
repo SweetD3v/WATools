@@ -57,15 +57,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
             viewPagerHomeStatus.isUserInputEnabled = false
             viewPagerHomeStatus.adapter = FragmentsAdapter(requireActivity())
-            viewPagerHomeStatus.registerOnPageChangeCallback(object : OnPageChangeCallback() {
-                override fun onPageSelected(position: Int) {
-                    super.onPageSelected(position)
-                    when (position) {
-                        0 -> imgMore.visibility = View.VISIBLE
-                        1 -> imgMore.visibility = View.GONE
-                    }
-                }
-            })
+//            viewPagerHomeStatus.registerOnPageChangeCallback(object : OnPageChangeCallback() {
+//                override fun onPageSelected(position: Int) {
+//                    super.onPageSelected(position)
+//                    when (position) {
+//                        0 -> imgMore.visibility = View.VISIBLE
+//                        1 -> imgMore.visibility = View.GONE
+//                    }
+//                }
+//            })
 
             bottomNavBar.setOnItemSelectedListener { item ->
                 when (item.itemId) {

@@ -28,12 +28,13 @@ import com.dev4life.watools.databinding.ActivityFullviewWaBinding
 import com.dev4life.watools.databinding.ItemFullViewBinding
 import com.dev4life.watools.models.Media
 import com.dev4life.watools.tools.VideoViewActivity
+import com.dev4life.watools.ui.fragments.WAImagesFragment.Companion.imagesList
 import com.dev4life.watools.utils.*
 import java.io.File
 
 class FullViewWhatsappActivity : AppCompatActivity() {
     val binding by lazy { ActivityFullviewWaBinding.inflate(layoutInflater) }
-    var imagesList = mutableListOf<Media>()
+//    var imagesList = mutableListOf<Media>()
     var position = 0
     val extFile by lazy { File(getExternalFilesDir("Videos"), "video.mp4") }
     var isVideo = false
@@ -190,13 +191,16 @@ class FullViewWhatsappActivity : AppCompatActivity() {
 //            }
         }
 
-        getMediaWA(this) { list ->
-            val imagesListNew = list
-            if (this.imagesList.size != imagesListNew.size)
-                imagesList = imagesListNew
-            Handler(Looper.getMainLooper()).post {
-                refreshAdapter()
-            }
+//        getMediaWA(this) { list ->
+//            val imagesListNew = list
+//            if (imagesList.size != imagesListNew.size)
+//                imagesList = imagesListNew
+//            Handler(Looper.getMainLooper()).post {
+//                refreshAdapter()
+//            }
+//        }
+        Handler(Looper.getMainLooper()).post {
+            refreshAdapter()
         }
 
         if (extFile.exists())

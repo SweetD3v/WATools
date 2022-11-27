@@ -347,6 +347,7 @@ class FileUtilsss {
 
         @Throws(IOException::class)
         fun copy(src: File?, dst: File?) {
+            dst?.createNewFile()
             FileInputStream(src).use { input ->
                 FileOutputStream(dst).use { out ->
                     val buf = ByteArray(4096)

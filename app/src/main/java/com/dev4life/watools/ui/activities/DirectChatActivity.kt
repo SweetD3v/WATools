@@ -2,11 +2,13 @@ package com.dev4life.watools.ui.activities
 
 import android.content.ComponentName
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import com.dev4life.watools.databinding.ActivityDirectChatBinding
 import com.dev4life.watools.utils.setDarkStatusBar
+import java.net.URLEncoder
 
 
 class DirectChatActivity : BaseActivity() {
@@ -19,8 +21,9 @@ class DirectChatActivity : BaseActivity() {
 
         binding.run {
             btnSend.setOnClickListener {
+                val message = edtMessage.text.toString()
                 if (edtNumber.text.toString().trim().isNotEmpty()
-                    && edtMessage.text.toString().trim().isNotEmpty()
+                    && message.trim().isNotEmpty()
                 ) {
                     var toCode = ccpPhone.selectedCountryCode() // contains spaces.
 
@@ -30,22 +33,28 @@ class DirectChatActivity : BaseActivity() {
                     Log.e("TAG", "phoneNo: $phoneNo")
 
                     val sendIntent = Intent(Intent.ACTION_MAIN)
-                    sendIntent.component = ComponentName(
-                        "com.whatsapp",
-                        "com.whatsapp.Conversation"
-                    )
-                    sendIntent.putExtra("jid", "$phoneNo@s.whatsapp.net")
-                    sendIntent.putExtra(Intent.EXTRA_TEXT, edtMessage.text.toString())
-                    sendIntent.action = Intent.ACTION_SEND
+//                    sendIntent.component = ComponentName(
+//                        "com.whatsapp",
+//                        "com.whatsapp.Conversation"
+//                    )
+//                    sendIntent.putExtra("jid", "$phoneNo@s.whatsapp.net")
+                    val url =
+                        "https://api.whatsapp.com/send?phone=$phoneNo&text=" + URLEncoder.encode(
+                            message,
+                            "UTF-8"
+                        )
+//                    sendIntent.putExtra(Intent.EXTRA_TEXT, message)
+                    sendIntent.action = Intent.ACTION_VIEW
                     sendIntent.setPackage("com.whatsapp")
-                    sendIntent.type = "text/plain"
+                    sendIntent.data = Uri.parse(url)
+//                    sendIntent.type = "text/plain"
                     if (sendIntent.resolveActivity(packageManager) != null) {
                         startActivity(sendIntent)
                     } else {
-                        sendIntent.component = ComponentName(
-                            "com.whatsapp.w4b",
-                            "com.whatsapp.Conversation"
-                        )
+//                        sendIntent.component = ComponentName(
+//                            "com.whatsapp.w4b",
+//                            "com.whatsapp.Conversation"
+//                        )
                         sendIntent.setPackage("com.whatsapp.w4b")
                         if (sendIntent.resolveActivity(packageManager) != null) {
                             startActivity(sendIntent)
