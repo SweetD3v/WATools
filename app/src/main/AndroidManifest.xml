@@ -106,6 +106,10 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".ui.fragments.HomeFragment"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".ui.activities.FullViewWASavedActivity"
             android:exported="false"
             android:screenOrientation="portrait" />

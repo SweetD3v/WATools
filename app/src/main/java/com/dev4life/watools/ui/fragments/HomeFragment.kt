@@ -2,45 +2,45 @@ package com.dev4life.watools.ui.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import androidx.navigation.Navigation
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.dev4life.watools.R
 import com.dev4life.watools.databinding.BottomSheetWaTypeBinding
 import com.dev4life.watools.databinding.FragmentHomeBinding
+import com.dev4life.watools.ui.activities.BaseActivityBinding
 import com.dev4life.watools.ui.activities.WAToolsActivity
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
 
-class HomeFragment : BaseFragment<FragmentHomeBinding>() {
-    override fun getLayout(): FragmentHomeBinding {
-        return FragmentHomeBinding.inflate(layoutInflater)
-    }
+class HomeFragment : BaseActivityBinding<FragmentHomeBinding>() {
+    override val binding by lazy { FragmentHomeBinding.inflate(layoutInflater) }
 
     var bottomSheetWAType: BottomSheetDialog? = null
-    var homeStatusFragment: HomeStatusFragment = HomeStatusFragment.newInstance()
-    var toolsFragment: ToolsFragment = ToolsFragment.newInstance()
+    lateinit var homeStatusFragment: HomeStatusFragment
+    lateinit var toolsFragment: ToolsFragment
 
     companion object {
         const val KEY_DATA_RESULT = "KEY_DATA_RESULT"
         const val KEY_SELECTED_PHOTOS = "SELECTED_PHOTOS"
 
-        open fun newInstance(): HomeFragment {
+        fun newInstance(): HomeFragment {
             return HomeFragment()
         }
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
         binding.run {
 
+            homeStatusFragment = HomeStatusFragment.newInstance()
+            toolsFragment = ToolsFragment.newInstance()
+
             imgMore.setOnClickListener {
                 val sheetTypeBinding = BottomSheetWaTypeBinding.inflate(layoutInflater)
-                bottomSheetWAType = BottomSheetDialog(ctx, R.style.BottomSheetDialogTheme)
+                bottomSheetWAType =
+                    BottomSheetDialog(this@HomeFragment, R.style.BottomSheetDialogTheme)
                 bottomSheetWAType?.setContentView(sheetTypeBinding.root)
                 bottomSheetWAType?.show()
 
@@ -55,8 +55,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 }
             }
 
-            viewPagerHomeStatus.isUserInputEnabled = false
-            viewPagerHomeStatus.adapter = FragmentsAdapter(requireActivity())
+            viewPagerHomeStatus.isUserInputEnabled = true
+            viewPagerHomeStatus.adapter = FragmentsAdapter(this@HomeFragment)
 //            viewPagerHomeStatus.registerOnPageChangeCallback(object : OnPageChangeCallback() {
 //                override fun onPageSelected(position: Int) {
 //                    super.onPageSelected(position)
@@ -84,20 +84,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             bottomNavBar.selectedItemId = R.id.action_tools
 
             fabWATools.setOnClickListener {
-                startActivity(Intent(ctx, WAToolsActivity::class.java))
+                startActivity(Intent(this@HomeFragment, WAToolsActivity::class.java))
             }
-        }
-    }
-
-    private fun selectStatusFragment() {
-        view?.let {
-            Navigation.findNavController(it).navigate(R.id.action_home_to_tools)
-        }
-    }
-
-    private fun selectToolsFragment() {
-        view?.let {
-            Navigation.findNavController(it).navigate(R.id.action_tools_to_home_status)
         }
     }
 
@@ -120,5 +108,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     override fun onBackPressed() {
+        finish()
     }
 }

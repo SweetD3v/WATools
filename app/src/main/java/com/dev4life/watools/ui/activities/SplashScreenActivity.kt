@@ -8,6 +8,7 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.dev4life.watools.R
 import com.dev4life.watools.databinding.ActivitySplashBinding
+import com.dev4life.watools.ui.fragments.HomeFragment
 import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.FullScreenContentCallback
@@ -77,7 +78,7 @@ class SplashScreenActivity : BaseActivity(), LifecycleObserver {
             val fullScreenContentCallback: FullScreenContentCallback =
                 object : FullScreenContentCallback() {
                     override fun onAdFailedToShowFullScreenContent(adError: AdError) {
-                        startActivity(Intent(this@SplashScreenActivity, MainActivity::class.java))
+                        startActivity(Intent(this@SplashScreenActivity, HomeFragment::class.java))
                         finish()
                     }
 
@@ -88,14 +89,14 @@ class SplashScreenActivity : BaseActivity(), LifecycleObserver {
                     override fun onAdDismissedFullScreenContent() {
                         appOpenAd = null
                         isShowingAd = false
-                        startActivity(Intent(this@SplashScreenActivity, MainActivity::class.java))
+                        startActivity(Intent(this@SplashScreenActivity, HomeFragment::class.java))
                         finish()
                     }
                 }
-            appOpenAd!!.setFullScreenContentCallback(fullScreenContentCallback)
+            appOpenAd!!.fullScreenContentCallback = fullScreenContentCallback
             appOpenAd!!.show(this)
         } else {
-            startActivity(Intent(this@SplashScreenActivity, MainActivity::class.java))
+            startActivity(Intent(this@SplashScreenActivity, HomeFragment::class.java))
             finish()
         }
     }
