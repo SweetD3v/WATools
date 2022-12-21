@@ -68,6 +68,11 @@ class WAImagesFragment : BaseFragment<FragmentWaimagesBinding>(), WATypeChangeLi
                 }
             } else granted = false
 
+//            if (granted) {
+//                if (waType == 0)
+//                    loadImages()
+//                else loadImagesWB()
+//            }
         }
 
     val statusFileResultLauncher =
@@ -124,7 +129,12 @@ class WAImagesFragment : BaseFragment<FragmentWaimagesBinding>(), WATypeChangeLi
     override fun onResume() {
         super.onResume()
 
-        Log.e("TAG", "onResumeStatus: ")
+        Log.e(
+            "TAG",
+            "onResumeStatus: ${isAllPermissionsGranted()} - ${
+                shouldShowRequestPermissionRationale(PERMISSIONS[0])
+            }"
+        )
 
         if (!isAllPermissionsGranted() || ctx.contentResolver.persistedUriPermissions.size <= 0) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R
@@ -132,9 +142,21 @@ class WAImagesFragment : BaseFragment<FragmentWaimagesBinding>(), WATypeChangeLi
             ) {
                 openDocTreeStatus()
             } else {
-                if (!isAllPermissionsGranted())
-                    permissionsLauncher.launch(PERMISSIONS.toTypedArray())
-                else {
+                if (!isAllPermissionsGranted()) {
+                    var askPermission = false
+                    for (i in PERMISSIONS.indices) {
+                        if (shouldShowRequestPermissionRationale(PERMISSIONS[i])
+                            || !hasPermission(PERMISSIONS[i])
+                        ) {
+                            askPermission = true
+                            break
+                        }
+                    }
+                    Log.e("TAG", "askPermission: ${askPermission}")
+                    if (askPermission) {
+                        permissionsLauncher.launch(PERMISSIONS.toTypedArray())
+                    }
+                } else {
                     if (waType == 0)
                         loadImages()
                     else loadImagesWB()
@@ -145,7 +167,13 @@ class WAImagesFragment : BaseFragment<FragmentWaimagesBinding>(), WATypeChangeLi
                 loadImages()
             else loadImagesWB()
         }
+    }
 
+    fun hasPermission(permissionStr: String): Boolean {
+        return ContextCompat.checkSelfPermission(
+            ctx,
+            permissionStr
+        ) == PackageManager.PERMISSION_GRANTED
     }
 
     fun isAllPermissionsGranted() = PERMISSIONS.all {
@@ -203,28 +231,30 @@ class WAImagesFragment : BaseFragment<FragmentWaimagesBinding>(), WATypeChangeLi
     }
 
     private fun loadImages() {
-        binding.apply {
-            val imageListNew = mutableListOf<Media>()
+        if (isAdded) {
+            binding.apply {
+                val imageListNew = mutableListOf<Media>()
 
-            job = Job()
-            ioScope = CoroutineScope(Dispatchers.IO + job)
-            uiScope = CoroutineScope(Dispatchers.Main + job)
+                job = Job()
+                ioScope = CoroutineScope(Dispatchers.IO + job)
+                uiScope = CoroutineScope(Dispatchers.Main + job)
 
-            ioScope.launch {
-                getMediaWACoroutine(ctx) { list ->
-                    for (media in list) {
-                        if (!media.path.contains(".nomedia", true)
-                        ) {
-                            imageListNew.add(media)
+                ioScope.launch {
+                    getMediaWACoroutine(ctx) { list ->
+                        for (media in list) {
+                            if (!media.path.contains(".nomedia", true)
+                            ) {
+                                imageListNew.add(media)
+                            }
+//                            Log.e("TAG", "loadImagesWA: ${media.path}")
                         }
-                        Log.e("TAG", "loadImagesWA: ${media.path}")
-                    }
-                    uiScope.launch {
-                        imagesList = imageListNew
                         uiScope.launch {
-                            val waMediaAdapter = WAMediaAdapter(ctx, imagesList)
-                            binding.rvWAImages.adapter = waMediaAdapter
-                            waMediaAdapter.notifyItemRangeChanged(0, imagesList.size)
+                            imagesList = imageListNew
+                            uiScope.launch {
+                                val waMediaAdapter = WAMediaAdapter(ctx, imagesList)
+                                binding.rvWAImages.adapter = waMediaAdapter
+                                waMediaAdapter.notifyItemRangeChanged(0, imagesList.size)
+                            }
                         }
                     }
                 }
@@ -233,28 +263,30 @@ class WAImagesFragment : BaseFragment<FragmentWaimagesBinding>(), WATypeChangeLi
     }
 
     private fun loadImagesWB() {
-        binding.apply {
-            val imageListNew = mutableListOf<Media>()
+        if (isAdded) {
+            binding.apply {
+                val imageListNew = mutableListOf<Media>()
 
-            job = Job()
-            ioScope = CoroutineScope(Dispatchers.IO + job)
-            uiScope = CoroutineScope(Dispatchers.Main + job)
+                job = Job()
+                ioScope = CoroutineScope(Dispatchers.IO + job)
+                uiScope = CoroutineScope(Dispatchers.Main + job)
 
-            ioScope.launch {
-                getMediaWAWBCoroutine(ctx) { list ->
-                    for (media in list) {
-                        if (!media.path.contains(".nomedia", true)
-                        ) {
-                            imageListNew.add(media)
+                ioScope.launch {
+                    getMediaWAWBCoroutine(ctx) { list ->
+                        for (media in list) {
+                            if (!media.path.contains(".nomedia", true)
+                            ) {
+                                imageListNew.add(media)
+                            }
+//                            Log.e("TAG", "loadImagesWA: ${media.path}")
                         }
-                        Log.e("TAG", "loadImagesWA: ${media.path}")
-                    }
-                    uiScope.launch {
-                        imagesList = imageListNew
                         uiScope.launch {
-                            val waMediaAdapter = WAMediaAdapter(ctx, imagesList)
-                            binding.rvWAImages.adapter = waMediaAdapter
-                            waMediaAdapter.notifyItemRangeChanged(0, imagesList.size)
+                            imagesList = imageListNew
+                            uiScope.launch {
+                                val waMediaAdapter = WAMediaAdapter(ctx, imagesList)
+                                binding.rvWAImages.adapter = waMediaAdapter
+                                waMediaAdapter.notifyItemRangeChanged(0, imagesList.size)
+                            }
                         }
                     }
                 }

@@ -32,21 +32,21 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
-                != PackageManager.PERMISSION_GRANTED
-            ) {
-                notificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
-            } else {
-                val speedMeterIntent =
-                    Intent(this@MainActivity, SpeedMeterService::class.java)
-                startService(speedMeterIntent)
-            }
-        } else {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+//            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
+//                != PackageManager.PERMISSION_GRANTED
+//            ) {
+//                notificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+//            } else {
+//                val speedMeterIntent =
+//                    Intent(this@MainActivity, SpeedMeterService::class.java)
+//                startService(speedMeterIntent)
+//            }
+//        } else {
             val speedMeterIntent =
                 Intent(this@MainActivity, SpeedMeterService::class.java)
             startService(speedMeterIntent)
-        }
+//        }
 
         var permissions = getAllAppsPermissions(this)
         permissions = ArrayList(permissions.filter {

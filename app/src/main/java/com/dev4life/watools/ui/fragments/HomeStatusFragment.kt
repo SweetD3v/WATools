@@ -56,15 +56,15 @@ class HomeStatusFragment : BaseFragment<FragmentHomeStatusBinding>(), WATypeChan
         }
 
         override fun createFragment(position: Int): Fragment {
-            when (position) {
+            return when (position) {
                 0 -> {
-                    return imgFragment
+                    imgFragment
                 }
                 1 -> {
-                    return savedFragment
+                    savedFragment
                 }
+                else -> imgFragment
             }
-            return imgFragment
         }
     }
 

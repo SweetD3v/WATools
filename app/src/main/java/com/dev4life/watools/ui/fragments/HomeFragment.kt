@@ -55,7 +55,7 @@ class HomeFragment : BaseActivityBinding<FragmentHomeBinding>() {
                 }
             }
 
-            viewPagerHomeStatus.isUserInputEnabled = true
+            viewPagerHomeStatus.isUserInputEnabled = false
             viewPagerHomeStatus.adapter = FragmentsAdapter(this@HomeFragment)
 //            viewPagerHomeStatus.registerOnPageChangeCallback(object : OnPageChangeCallback() {
 //                override fun onPageSelected(position: Int) {
@@ -81,7 +81,7 @@ class HomeFragment : BaseActivityBinding<FragmentHomeBinding>() {
                 return@setOnItemSelectedListener false
             }
 
-            bottomNavBar.selectedItemId = R.id.action_tools
+//            bottomNavBar.selectedItemId = R.id.action_tools
 
             fabWATools.setOnClickListener {
                 startActivity(Intent(this@HomeFragment, WAToolsActivity::class.java))
