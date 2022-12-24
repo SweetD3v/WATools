@@ -84,7 +84,7 @@ class FBDownloaderHomeActivity : BaseActivity() {
                 }
             }
 
-            imgClear.setOnClickListener { etText.text.clear() }
+//            imgClear.setOnClickListener { etText.text.clear() }
         }
     }
 

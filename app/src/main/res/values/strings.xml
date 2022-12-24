@@ -14,7 +14,7 @@
     <string name="ringtone_maker">Ringtone Maker</string>
     <string name="video_editor">Video Editor</string>
     <string name="collage_maker">Collage Maker</string>
-    <string name="insta_grid">Insta Grid</string>
+    <string name="insta_grid">Grid Maker</string>
     <string name="status_n_saver">Status\nSaver</string>
     <string name="cleaner">Cleaner</string>
     <string name="demo_text_long">Lorem ipsum dolor sit amet, consectetur adipiscing elit</string>
@@ -24,8 +24,8 @@
     <string name="watch">Watch</string>
     <string name="screen_recorder">Screen recorder</string>
     <string name="status">Status</string>
-    <string name="paste_instagram_link_here">Paste Instagram link here</string>
-    <string name="paste_facebook_link_here">Paste Facebook link here</string>
+    <string name="paste_instagram_link_here">Paste link only Reels, Video &amp; Posts.</string>
+    <string name="paste_facebook_link_here">Paste link only Reels, Video &amp; Posts.</string>
     <string name="ringtones">Ringtones</string>
     <string name="status_maker">Status Maker</string>
     <string name="whatsapp_status">Whatsapp Status</string>
@@ -36,7 +36,7 @@
     <string name="instagram">Instagram</string>
     <string name="facebook">Facebook</string>
     <string name="save_and_share"><![CDATA[Save & Share]]></string>
-    <string name="photo_filters">Photo Filters</string>
+    <string name="photo_filters">Filter</string>
     <string name="image_saved_text">Image saved successfully..!</string>
     <string name="photo_warp">Photo Warp</string>
     <string name="age_calculator">Age Calculator</string>
@@ -96,8 +96,8 @@
     <string name="cartoonify">Cartoonify</string>
     <string name="sketchify">Sketchify</string>
     <string name="my_creation">My Creation</string>
-    <string name="facebook_downloader">Facebook Downloader</string>
-    <string name="instagram_downloader">Instagram Downloader</string>
+    <string name="facebook_downloader">Facebook</string>
+    <string name="instagram_downloader">Instagram</string>
     <string name="direct_chat">Direct Chat</string>
     <string name="empty_msg">Empty Message</string>
     <string name="whatsapp_tools">Whatsapp Tools</string>

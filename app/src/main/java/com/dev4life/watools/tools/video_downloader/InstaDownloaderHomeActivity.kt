@@ -85,7 +85,7 @@ class InstaDownloaderHomeActivity : BaseActivity() {
                 }
             }
 
-            imgClear.setOnClickListener { etText.text.clear() }
+//            imgClear.setOnClickListener { etText.text.clear() }
         }
     }
 
