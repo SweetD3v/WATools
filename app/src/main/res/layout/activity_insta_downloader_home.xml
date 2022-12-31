@@ -14,8 +14,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
-            android:background="@color/white"
-            android:elevation="2dp">
+            android:background="@color/white">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imgBack"
@@ -32,8 +31,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="8dp"
+                android:layout_marginEnd="44dp"
                 android:layout_toEndOf="@id/imgBack"
-                android:gravity="center_vertical"
+                android:gravity="center"
                 android:maxLines="1"
                 android:text="@string/instagram_downloader"
                 android:textColor="@color/textColorPrimary"
@@ -48,8 +48,14 @@
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="8dp"
                 android:padding="4dp"
-                app:srcCompat="@drawable/ic_download"
+                app:srcCompat="@drawable/ic_instadownloadhome"
                 app:tint="@color/black" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.8dp"
+                android:layout_alignParentBottom="true"
+                android:background="#e5e5e5"/>
         </RelativeLayout>
 
         <com.google.android.material.card.MaterialCardView
@@ -106,15 +112,25 @@
                         android:id="@+id/rlTxt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:paddingVertical="@dimen/_2sdp"
                         android:background="@drawable/et_bg_insta1">
+
+                        <ImageView
+                            android:id="@+id/link"
+                            android:layout_width="@dimen/_24sdp"
+                            android:layout_height="@dimen/_24sdp"
+                            android:layout_marginStart="@dimen/_4sdp"
+                            android:src="@drawable/ic_instalink"
+                            android:layout_centerVertical="true"
+                            android:rotation="45"/>
 
                         <EditText
                             android:id="@+id/etText"
                             android:layout_width="match_parent"
                             android:layout_height="56dp"
                             android:layout_centerVertical="true"
-                            android:layout_toStartOf="@id/imgClear"
                             android:background="@null"
+                            android:layout_toRightOf="@id/link"
                             android:fontFamily="@font/poppins_regular"
                             android:hint="@string/paste_instagram_link_here"
                             android:paddingStart="10dp"
@@ -123,16 +139,6 @@
                             android:textColor="@color/black"
                             android:textColorHint="@color/textcolor_hint"
                             android:textSize="14sp" />
-
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/imgClear"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:layout_alignParentEnd="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginEnd="8dp"
-                            android:padding="8dp"
-                            app:srcCompat="@drawable/ic_close" />
 
                     </RelativeLayout>
 
@@ -143,42 +149,35 @@
                         android:layout_marginTop="8dp"
                         android:orientation="horizontal">
 
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btnPaste"
-                            style="?borderlessButtonStyle"
-                            android:layout_width="0dp"
-                            android:layout_height="56dp"
-                            android:layout_marginEnd="16dp"
-                            android:fontFamily="@font/poppins_regular"
-                            android:gravity="center"
-                            android:text="@string/paste"
-                            android:textAllCaps="false"
-                            android:textColor="#EF1A5E"
-                            android:textSize="14sp"
-                            app:layout_constraintBottom_toBottomOf="@id/btnDownload"
-                            app:layout_constraintEnd_toStartOf="@id/btnDownload"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="@id/btnDownload"
-                            app:rippleColor="#FFE1EC"
-                            app:strokeColor="#EF1A5E"
-                            app:strokeWidth="1dp" />
-
-                        <com.google.android.material.button.MaterialButton
+                        <LinearLayout
                             android:id="@+id/btnDownload"
                             android:layout_width="0dp"
                             android:layout_height="56dp"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginTop="8dp"
-                            android:layout_marginBottom="2dp"
-                            android:backgroundTint="#EF1A5E"
+                            android:layout_marginStart="@dimen/_24sdp"
+                            android:layout_marginEnd="@dimen/_8sdp"
                             android:fontFamily="@font/poppins_regular"
                             android:gravity="center"
-                            android:text="@string/download"
-                            android:textAllCaps="false"
-                            android:textSize="14sp"
+                            android:background="@drawable/ic_insta_download_btn"
+                            app:layout_constraintBottom_toBottomOf="@id/btnPaste"
+                            app:layout_constraintEnd_toStartOf="@id/btnPaste"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="@id/btnPaste"
+                            app:rippleColor="#FFE1EC"
+                            android:orientation="horizontal" />
+
+                        <LinearLayout
+                            android:id="@+id/btnPaste"
+                            android:layout_width="0dp"
+                            android:layout_height="56dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="2dp"
+                            android:layout_marginStart="@dimen/_8sdp"
+                            android:layout_marginEnd="@dimen/_24sdp"
+                            android:background="@drawable/ic_instapaste"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@id/btnPaste"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintStart_toEndOf="@id/btnDownload"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:orientation="horizontal" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </RelativeLayout>
             </LinearLayout>

@@ -15,8 +15,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
-            android:background="@color/white"
-            android:elevation="2dp">
+            android:background="@color/white">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imgBack"
@@ -34,7 +33,8 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="8dp"
                 android:layout_toEndOf="@id/imgBack"
-                android:gravity="center_vertical"
+                android:gravity="center"
+                android:layout_marginEnd="64dp"
                 android:maxLines="1"
                 android:text="@string/save_and_share"
                 android:textColor="@color/textColorPrimary"
@@ -57,14 +57,19 @@
                     android:id="@+id/imgSave"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/color_accent"
+                    android:backgroundTint="#ef8800"
                     android:fontFamily="@font/karla_semibold"
                     android:text="Save"
-                    android:textAllCaps="false"
+                    android:textAllCaps="true"
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     app:cornerRadius="24dp" />
             </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.8dp"
+                android:background="#dedede"
+                android:layout_alignParentBottom="true"/>
         </RelativeLayout>
 
         <ScrollView
@@ -108,7 +113,7 @@
                                     android:id="@+id/imgBmp1"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:src="@color/color_accent" />
+                                    android:src="#f0545d" />
 
                                 <TextView
                                     android:id="@+id/txt1"
@@ -134,7 +139,7 @@
                                     android:id="@+id/imgBmp2"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:src="@color/color_accent" />
+                                    android:src="#f0545d" />
 
                                 <TextView
                                     android:id="@+id/txt2"
@@ -160,7 +165,7 @@
                                     android:id="@+id/imgBmp3"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:src="@color/color_accent" />
+                                    android:src="#f0545d" />
 
                                 <TextView
                                     android:id="@+id/txt3"
@@ -192,7 +197,7 @@
                                     android:id="@+id/imgBmp4"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:src="@color/color_accent" />
+                                    android:src="#f0545d" />
 
                                 <TextView
                                     android:id="@+id/txt4"
@@ -219,7 +224,7 @@
                                     android:id="@+id/imgBmp5"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:src="@color/color_accent" />
+                                    android:src="#f0545d" />
 
                                 <TextView
                                     android:id="@+id/txt5"
@@ -246,7 +251,7 @@
                                     android:id="@+id/imgBmp6"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:src="@color/color_accent" />
+                                    android:src="#f0545d" />
 
                                 <TextView
                                     android:id="@+id/txt6"
@@ -279,7 +284,7 @@
                                     android:id="@+id/imgBmp7"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:src="@color/color_accent" />
+                                    android:src="#f0545d" />
 
                                 <TextView
                                     android:id="@+id/txt7"
@@ -306,7 +311,7 @@
                                     android:id="@+id/imgBmp8"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:src="@color/color_accent" />
+                                    android:src="#f0545d" />
 
                                 <TextView
                                     android:id="@+id/txt8"
@@ -333,7 +338,7 @@
                                     android:id="@+id/imgBmp9"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:src="@color/color_accent" />
+                                    android:src="#f0545d" />
 
                                 <TextView
                                     android:id="@+id/txt9"
@@ -371,7 +376,8 @@
                         android:paddingHorizontal="16dp"
                         android:text="Click on the image numbers to share it on Instagram"
                         android:textColor="@color/textColorPrimary"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        android:visibility="gone"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -379,19 +385,13 @@
                         android:gravity="center"
                         android:orientation="horizontal">
 
-                        <com.google.android.material.button.MaterialButton
+                        <LinearLayout
                             android:id="@+id/imgShare"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="64dp"
                             android:layout_marginHorizontal="16dp"
-                            android:backgroundTint="@color/color_primary"
-                            android:fontFamily="@font/poppins_medium"
-                            android:paddingTop="10dp"
-                            android:paddingBottom="8dp"
-                            android:text="Share to Instagram"
-                            android:textAllCaps="false"
-                            android:textColor="@color/white"
-                            android:textSize="18sp" />
+                            android:orientation="horizontal"
+                            android:background="@drawable/ic_share_to_instagram"/>
                     </LinearLayout>
                 </LinearLayout>
 
